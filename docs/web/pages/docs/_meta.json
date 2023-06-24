@@ -4,7 +4,7 @@
     "type": "separator",
     "title": "Getting Started"
   },
-  "introduction": "Polaris Overview",
+  "introduction": "Jinx Overview",
   "system-config": "System Configuration",
   "running-a-node": "Running a Node",
   "using-metamask": "Using Metamask",
@@ -12,15 +12,15 @@
     "type": "separator",
     "title": "Fundamentals"
   },
-  "evm-on-polaris": "Overview",
+  "evm-on-jinx": "Overview",
   "architecture": "Architecture",
   "precompile-overview": "Precompiles",
   "opcodes": "Opcodes",
   "json-rpc": "JSON-RPC",
   "tracing": "EVM Tracing",
-  "-- Polaris on Cosmos --": {
+  "-- Jinx on Cosmos --": {
     "type": "separator",
-    "title": "Polaris on Cosmos"
+    "title": "Jinx on Cosmos"
   },
   "json-rpc-cosmos": "JSON-RPC",
   "precompile-cosmos-overview": "Precompiles",

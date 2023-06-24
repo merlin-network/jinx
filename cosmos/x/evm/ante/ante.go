@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -25,9 +25,9 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 
-	antelib "pkg.berachain.dev/polaris/cosmos/lib/ante"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/types"
-	"pkg.berachain.dev/polaris/lib/errors"
+	antelib "pkg.berachain.dev/jinx/cosmos/lib/ante"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/types"
+	"pkg.berachain.dev/jinx/lib/errors"
 )
 
 // NewAnteHandler returns an AnteHandler that checks and increments sequence

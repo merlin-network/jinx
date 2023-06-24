@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -38,14 +38,14 @@ import (
 	governancetypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	v1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 
-	generated "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/governance"
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/cosmos/precompile"
-	precomtest "pkg.berachain.dev/polaris/cosmos/precompile/test"
-	testutil "pkg.berachain.dev/polaris/cosmos/testing/utils"
-	"pkg.berachain.dev/polaris/cosmos/types"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/lib/utils"
+	generated "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/governance"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/cosmos/precompile"
+	precomtest "pkg.berachain.dev/jinx/cosmos/precompile/test"
+	testutil "pkg.berachain.dev/jinx/cosmos/testing/utils"
+	"pkg.berachain.dev/jinx/cosmos/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/lib/utils"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -94,7 +94,7 @@ var _ = Describe("Governance Precompile", func() {
 			msg = banktypes.MsgSend{
 				FromAddress: caller.String(),
 				ToAddress:   testutil.Bob.String(),
-				Amount:      sdk.NewCoins(sdk.NewInt64Coin("abera", 100)),
+				Amount:      sdk.NewCoins(sdk.NewInt64Coin("ablack", 100)),
 			}
 		})
 
@@ -148,11 +148,11 @@ var _ = Describe("Governance Precompile", func() {
 			Expect(res).To(BeNil())
 		})
 		It("should succeed", func() {
-			initDeposit := sdk.NewCoins(sdk.NewInt64Coin("abera", 100))
+			initDeposit := sdk.NewCoins(sdk.NewInt64Coin("ablack", 100))
 			govAcct := gk.GetGovernanceAccount(ctx).GetAddress()
 			err := cosmlib.MintCoinsToAddress(
 				ctx, bk, governancetypes.ModuleName,
-				cosmlib.AccAddressToEthAddress(govAcct), "abera", big.NewInt(100),
+				cosmlib.AccAddressToEthAddress(govAcct), "ablack", big.NewInt(100),
 			)
 			Expect(err).ToNot(HaveOccurred())
 			message := &banktypes.MsgSend{

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -27,7 +27,7 @@ import (
 	"github.com/ethereum/go-ethereum/consensus/misc"
 	"github.com/ethereum/go-ethereum/core/vm"
 
-	"pkg.berachain.dev/polaris/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/core/types"
 )
 
 // ChainWriter defines methods that are used to perform state and block transitions.
@@ -68,10 +68,10 @@ func (bc *blockchain) Prepare(ctx context.Context, number uint64) {
 		parent = bc.GetHeaderByNumber(number - 1)
 	}
 
-	// Polaris does not set Ethereum state root (Root), mix hash (MixDigest), extra data (Extra),
+	// Jinx does not set Ethereum state root (Root), mix hash (MixDigest), extra data (Extra),
 	// and block nonce (Nonce) on the new header.
 	header := &types.Header{
-		// Used in Polaris.
+		// Used in Jinx.
 		ParentHash: parent.Hash(),
 		Coinbase:   coinbase,
 		Number:     new(big.Int).SetUint64(number),

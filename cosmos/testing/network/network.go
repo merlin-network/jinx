@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -42,14 +42,14 @@ import (
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	ethhd "pkg.berachain.dev/polaris/cosmos/crypto/hd"
-	ethkeyring "pkg.berachain.dev/polaris/cosmos/crypto/keyring"
-	"pkg.berachain.dev/polaris/cosmos/crypto/keys/ethsecp256k1"
-	"pkg.berachain.dev/polaris/cosmos/simapp"
-	"pkg.berachain.dev/polaris/cosmos/types"
-	evmtypes "pkg.berachain.dev/polaris/cosmos/x/evm/types"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core"
+	ethhd "pkg.berachain.dev/jinx/cosmos/crypto/hd"
+	ethkeyring "pkg.berachain.dev/jinx/cosmos/crypto/keyring"
+	"pkg.berachain.dev/jinx/cosmos/crypto/keys/ethsecp256k1"
+	"pkg.berachain.dev/jinx/cosmos/simapp"
+	"pkg.berachain.dev/jinx/cosmos/types"
+	evmtypes "pkg.berachain.dev/jinx/cosmos/x/evm/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core"
 )
 
 type (
@@ -103,7 +103,7 @@ func New(t TestingT, configs ...network.Config) *network.Network {
 // genesis and single validator. All other parameters are inherited from cosmos-sdk/testutil/network.DefaultConfig.
 func DefaultConfig(keysMap map[string]*ethsecp256k1.PrivKey) network.Config {
 	types.SetupCosmosConfig()
-	encoding := BuildPolarisEncodingConfig(ModuleBasics)
+	encoding := BuildJinxEncodingConfig(ModuleBasics)
 	cfg := network.Config{
 		Codec:             encoding.Codec,
 		TxConfig:          encoding.TxConfig,
@@ -111,19 +111,19 @@ func DefaultConfig(keysMap map[string]*ethsecp256k1.PrivKey) network.Config {
 		InterfaceRegistry: encoding.InterfaceRegistry,
 		AccountRetriever:  authtypes.AccountRetriever{},
 		AppConstructor: func(val network.ValidatorI) servertypes.Application {
-			return simapp.NewPolarisApp(
+			return simapp.NewJinxApp(
 				val.GetCtx().Logger, cdb.NewMemDB(), nil, true, sims.EmptyAppOptions{},
 				baseapp.SetPruning(pruningtypes.NewPruningOptionsFromString(val.GetAppConfig().Pruning)),
 				baseapp.SetMinGasPrices(val.GetAppConfig().MinGasPrices),
-				baseapp.SetChainID("polaris-2061"),
+				baseapp.SetChainID("jinx-2061"),
 			)
 		},
 		GenesisState:    BuildGenesisState(keysMap),
 		TimeoutCommit:   time.Second,
-		ChainID:         "polaris-2061",
+		ChainID:         "jinx-2061",
 		NumValidators:   1,
-		BondDenom:       "abera",
-		MinGasPrices:    fmt.Sprintf("0.00000%s", "abera"),
+		BondDenom:       "ablack",
+		MinGasPrices:    fmt.Sprintf("0.00000%s", "ablack"),
 		AccountTokens:   sdk.TokensFromConsensusPower(thousand, sdk.DefaultPowerReduction),
 		StakingTokens:   sdk.TokensFromConsensusPower(fivehundred, sdk.DefaultPowerReduction),
 		BondedTokens:    sdk.TokensFromConsensusPower(onehundred, sdk.DefaultPowerReduction),
@@ -137,7 +137,7 @@ func DefaultConfig(keysMap map[string]*ethsecp256k1.PrivKey) network.Config {
 }
 
 func BuildGenesisState(keysMap map[string]*ethsecp256k1.PrivKey) map[string]json.RawMessage {
-	encoding := BuildPolarisEncodingConfig(ModuleBasics)
+	encoding := BuildJinxEncodingConfig(ModuleBasics)
 	genState := ModuleBasics.DefaultGenesis(encoding.Codec)
 
 	// Auth, Bank, EVM module
@@ -175,7 +175,7 @@ func BuildGenesisState(keysMap map[string]*ethsecp256k1.PrivKey) map[string]json
 	bankState.DenomMetadata = getTestMetadata()
 	bankState.SendEnabled = []banktypes.SendEnabled{
 		{
-			Denom:   "abera",
+			Denom:   "ablack",
 			Enabled: true,
 		},
 		{
@@ -199,7 +199,7 @@ func BuildGenesisState(keysMap map[string]*ethsecp256k1.PrivKey) map[string]json
 	// Staking module
 	var stakingState stakingtypes.GenesisState
 	encoding.Codec.MustUnmarshalJSON(genState[stakingtypes.ModuleName], &stakingState)
-	stakingState.Params.BondDenom = "abera"
+	stakingState.Params.BondDenom = "ablack"
 	genState[stakingtypes.ModuleName] = encoding.Codec.MustMarshalJSON(&stakingState)
 
 	// Distribution Module
@@ -217,16 +217,16 @@ func BuildGenesisState(keysMap map[string]*ethsecp256k1.PrivKey) map[string]json
 func getTestMetadata() []banktypes.Metadata {
 	return []banktypes.Metadata{
 		{
-			Name:        "Berachain bera",
-			Symbol:      "BERA",
-			Description: "The Bera.",
+			Name:        "Blackchain black",
+			Symbol:      "BLACK",
+			Description: "The Black.",
 			DenomUnits: []*banktypes.DenomUnit{
-				{Denom: "bera", Exponent: uint32(0), Aliases: []string{"bera"}},
-				{Denom: "nbera", Exponent: uint32(9), Aliases: []string{"nanobera"}},
-				{Denom: "abera", Exponent: uint32(18), Aliases: []string{"attobera"}},
+				{Denom: "black", Exponent: uint32(0), Aliases: []string{"black"}},
+				{Denom: "nblack", Exponent: uint32(9), Aliases: []string{"nanoblack"}},
+				{Denom: "ablack", Exponent: uint32(18), Aliases: []string{"attoblack"}},
 			},
-			Base:    "abera",
-			Display: "bera",
+			Base:    "ablack",
+			Display: "black",
 		},
 		{
 			Name:        "Token",
@@ -269,7 +269,7 @@ func getCoinsForAccount(name string) sdk.Coins {
 	switch name {
 	case "alice":
 		return sdk.NewCoins(
-			sdk.NewCoin("abera", sdkmath.NewInt(examoney)),
+			sdk.NewCoin("ablack", sdkmath.NewInt(examoney)),
 			sdk.NewCoin("bATOM", sdkmath.NewInt(examoney)),
 			sdk.NewCoin("bAKT", sdkmath.NewInt(12345)), //nolint:gomnd // its okay.
 			sdk.NewCoin("stake", sdkmath.NewInt(examoney)),
@@ -280,13 +280,13 @@ func getCoinsForAccount(name string) sdk.Coins {
 		)
 	case "bob":
 		return sdk.NewCoins(
-			sdk.NewCoin("abera", sdkmath.NewInt(onehundred)),
+			sdk.NewCoin("ablack", sdkmath.NewInt(onehundred)),
 			sdk.NewCoin("atoken", sdkmath.NewInt(onehundred)),
 			sdk.NewCoin("stake", sdkmath.NewInt(examoney)),
 		)
 	case "charlie":
-		return sdk.NewCoins(sdk.NewCoin("abera", sdkmath.NewInt(examoney)))
+		return sdk.NewCoins(sdk.NewCoin("ablack", sdkmath.NewInt(examoney)))
 	default:
-		return sdk.NewCoins(sdk.NewCoin("abera", sdkmath.NewInt(examoney)))
+		return sdk.NewCoins(sdk.NewCoin("ablack", sdkmath.NewInt(examoney)))
 	}
 }

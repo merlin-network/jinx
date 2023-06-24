@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -24,14 +24,14 @@ import (
 	"math/big"
 	"testing"
 
-	bindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/bank"
-	tbindings "pkg.berachain.dev/polaris/contracts/bindings/testing/fundraiser"
-	"pkg.berachain.dev/polaris/cosmos/testing/integration"
-	"pkg.berachain.dev/polaris/eth/common"
+	bindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/bank"
+	tbindings "pkg.berachain.dev/jinx/contracts/bindings/testing/fundraiser"
+	"pkg.berachain.dev/jinx/cosmos/testing/integration"
+	"pkg.berachain.dev/jinx/eth/common"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	. "pkg.berachain.dev/polaris/cosmos/testing/integration/utils"
+	. "pkg.berachain.dev/jinx/cosmos/testing/integration/utils"
 )
 
 func TestCosmosPrecompiles(t *testing.T) {
@@ -53,7 +53,7 @@ var _ = SynchronizedBeforeSuite(func() []byte {
 }, func(data []byte) {})
 
 var _ = Describe("Bank", func() {
-	denom := "abera"
+	denom := "ablack"
 	denom2 := "atoken"
 	denom3 := "stake"
 
@@ -80,24 +80,24 @@ var _ = Describe("Bank", func() {
 			},
 		}
 		evmDenomMetadata := bindings.IBankModuleDenomMetadata{
-			Name:        "Berachain bera",
-			Symbol:      "BERA",
-			Description: "The Bera.",
+			Name:        "Blackchain black",
+			Symbol:      "BLACK",
+			Description: "The Black.",
 			DenomUnits: []bindings.IBankModuleDenomUnit{
-				{Denom: "bera", Exponent: uint32(0), Aliases: []string{"bera"}},
-				{Denom: "nbera", Exponent: uint32(9), Aliases: []string{"nanobera"}},
-				{Denom: "abera", Exponent: uint32(18), Aliases: []string{"attobera"}},
+				{Denom: "black", Exponent: uint32(0), Aliases: []string{"black"}},
+				{Denom: "nblack", Exponent: uint32(9), Aliases: []string{"nanoblack"}},
+				{Denom: "ablack", Exponent: uint32(18), Aliases: []string{"attoblack"}},
 			},
-			Base:    "abera",
-			Display: "bera",
+			Base:    "ablack",
+			Display: "black",
 		}
 
-		// charlie initially has 1000000000000000000 abera
+		// charlie initially has 1000000000000000000 ablack
 		balance, err := bankPrecompile.GetBalance(nil, tf.Address("charlie"), denom)
 		Expect(err).ShouldNot(HaveOccurred())
 		Expect(balance.Cmp(big.NewInt(1000000000000000000))).To(Equal(0))
 
-		// Send 1000 bera from alice to charlie
+		// Send 1000 black from alice to charlie
 		_, err = bankPrecompile.Send(
 			tf.GenerateTransactOpts("alice"),
 			tf.Address("alice"),
@@ -110,12 +110,12 @@ var _ = Describe("Bank", func() {
 		err = tf.Network.WaitForNextBlock()
 		Expect(err).ToNot(HaveOccurred())
 
-		// charlie now has 1000000000000001000 abera
+		// charlie now has 1000000000000001000 ablack
 		balance, err = bankPrecompile.GetBalance(nil, tf.Address("charlie"), denom)
 		Expect(err).ShouldNot(HaveOccurred())
 		Expect(balance).To(Equal(big.NewInt(1000000000000001000)))
 
-		// bob has 100 abera and 100 atoken
+		// bob has 100 ablack and 100 atoken
 		allBalance, err := bankPrecompile.GetAllBalances(nil, tf.Address("bob"))
 		Expect(err).ShouldNot(HaveOccurred())
 		Expect(allBalance).To(Equal(expectedAllBalance))
@@ -140,7 +140,7 @@ var _ = Describe("Bank", func() {
 		Expect(err).ShouldNot(HaveOccurred())
 		Expect(denomMetadata).To(Equal(evmDenomMetadata))
 
-		sendEnabled, err := bankPrecompile.GetSendEnabled(nil, "abera")
+		sendEnabled, err := bankPrecompile.GetSendEnabled(nil, "ablack")
 		Expect(err).ShouldNot(HaveOccurred())
 		Expect(sendEnabled).To(BeTrue())
 	})
@@ -161,7 +161,7 @@ var _ = Describe("Bank", func() {
 			},
 		}
 
-		// donate 1000000 abera from account 0 to contractAddr
+		// donate 1000000 ablack from account 0 to contractAddr
 		_, err = contract.Donate(tf.GenerateTransactOpts("alice"), coinsToDonate)
 		Expect(err).ToNot(HaveOccurred())
 
@@ -169,12 +169,12 @@ var _ = Describe("Bank", func() {
 		err = tf.Network.WaitForNextBlock()
 		Expect(err).ToNot(HaveOccurred())
 
-		// contractAddr should have 1000000 abera
+		// contractAddr should have 1000000 ablack
 		balance, err := bankPrecompile.GetBalance(nil, contractAddr, denom)
 		Expect(err).ShouldNot(HaveOccurred())
 		Expect(balance).To(Equal(big.NewInt(1000000)))
 
-		// withdraw all 1000000 abera from contractAddr to account 0
+		// withdraw all 1000000 ablack from contractAddr to account 0
 		_, err = contract.WithdrawDonations(tf.GenerateTransactOpts("alice"))
 		Expect(err).ToNot(HaveOccurred())
 
@@ -182,7 +182,7 @@ var _ = Describe("Bank", func() {
 		err = tf.Network.WaitForNextBlock()
 		Expect(err).ToNot(HaveOccurred())
 
-		// contractAddr should have 0 abera
+		// contractAddr should have 0 ablack
 		balance, err = bankPrecompile.GetBalance(nil, contractAddr, denom)
 		Expect(err).ShouldNot(HaveOccurred())
 		Expect(balance.Cmp(big.NewInt(0))).To(Equal(0))

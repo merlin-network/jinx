@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -33,21 +33,21 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	bindings "pkg.berachain.dev/polaris/contracts/bindings/testing"
-	"pkg.berachain.dev/polaris/cosmos/precompile/staking"
-	testutil "pkg.berachain.dev/polaris/cosmos/testing/utils"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/keeper"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state"
-	evmmempool "pkg.berachain.dev/polaris/cosmos/x/evm/plugins/txpool/mempool"
-	"pkg.berachain.dev/polaris/eth/accounts/abi"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
-	coretypes "pkg.berachain.dev/polaris/eth/core/types"
-	"pkg.berachain.dev/polaris/eth/crypto"
-	"pkg.berachain.dev/polaris/eth/params"
-	"pkg.berachain.dev/polaris/lib/utils"
+	bindings "pkg.berachain.dev/jinx/contracts/bindings/testing"
+	"pkg.berachain.dev/jinx/cosmos/precompile/staking"
+	testutil "pkg.berachain.dev/jinx/cosmos/testing/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/keeper"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state"
+	evmmempool "pkg.berachain.dev/jinx/cosmos/x/evm/plugins/txpool/mempool"
+	"pkg.berachain.dev/jinx/eth/accounts/abi"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
+	coretypes "pkg.berachain.dev/jinx/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/crypto"
+	"pkg.berachain.dev/jinx/eth/params"
+	"pkg.berachain.dev/jinx/lib/utils"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -91,7 +91,7 @@ var _ = Describe("Processor", func() {
 			ak, sk,
 			storetypes.NewKVStoreKey("evm"),
 			"authority",
-			evmmempool.NewPolarisEthereumTxPool(),
+			evmmempool.NewJinxEthereumTxPool(),
 			func() *ethprecompile.Injector {
 				return ethprecompile.NewPrecompiles([]ethprecompile.Registrable{sc}...)
 			},

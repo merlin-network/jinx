@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -27,11 +27,11 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/cosmos/testing/utils"
-	"pkg.berachain.dev/polaris/cosmos/x/erc20/keeper"
-	"pkg.berachain.dev/polaris/cosmos/x/erc20/types"
-	"pkg.berachain.dev/polaris/eth/common"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/cosmos/testing/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/erc20/keeper"
+	"pkg.berachain.dev/jinx/cosmos/x/erc20/types"
+	"pkg.berachain.dev/jinx/eth/common"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -78,7 +78,7 @@ var _ = Describe("GRPC Query Server", func() {
 			Token: cosmlib.AddressToAccAddress(tokenAddr).String(),
 		})
 		Expect(err).ToNot(HaveOccurred())
-		Expect(resp.Denom).To(Equal(types.NewPolarisDenomForAddress(tokenAddr)))
+		Expect(resp.Denom).To(Equal(types.NewJinxDenomForAddress(tokenAddr)))
 	})
 
 	It("should correctly handle coin --> erc20", func() {

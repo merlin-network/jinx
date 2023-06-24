@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -26,9 +26,9 @@
 package registry_test
 
 import (
-	"pkg.berachain.dev/polaris/lib/registry"
-	"pkg.berachain.dev/polaris/lib/registry/mock"
-	libtypes "pkg.berachain.dev/polaris/lib/types"
+	"pkg.berachain.dev/jinx/lib/registry"
+	"pkg.berachain.dev/jinx/lib/registry/mock"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

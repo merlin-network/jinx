@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -28,12 +28,12 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/eth/accounts/abi"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/eth/core/precompile/mock"
-	"pkg.berachain.dev/polaris/eth/crypto"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/eth/accounts/abi"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/eth/core/precompile/mock"
+	"pkg.berachain.dev/jinx/eth/crypto"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

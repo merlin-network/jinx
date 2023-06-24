@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -24,8 +24,8 @@ import (
 	"cosmossdk.io/store/prefix"
 	storetypes "cosmossdk.io/store/types"
 
-	"pkg.berachain.dev/polaris/cosmos/x/erc20/types"
-	"pkg.berachain.dev/polaris/eth/common"
+	"pkg.berachain.dev/jinx/cosmos/x/erc20/types"
+	"pkg.berachain.dev/jinx/eth/common"
 )
 
 // DenomKVStore is the store type for ERC20 token address <-> SDK Coin denominations.

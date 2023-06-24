@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	"github.com/cosmos/gogoproto/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
-	"pkg.berachain.dev/polaris/cosmos/testing/types/mock/interfaces"
+	"pkg.berachain.dev/jinx/cosmos/testing/types/mock/interfaces"
 	"sync"
 )
 

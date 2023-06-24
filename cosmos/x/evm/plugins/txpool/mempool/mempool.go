@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -26,8 +26,8 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/types/mempool"
 
-	"pkg.berachain.dev/polaris/eth/common"
-	coretypes "pkg.berachain.dev/polaris/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	coretypes "pkg.berachain.dev/jinx/eth/core/types"
 )
 
 // EthTxPool is a mempool for Ethereum transactions. It wraps a PriorityNonceMempool and caches
@@ -57,8 +57,8 @@ type EthTxPool struct {
 	mu sync.RWMutex
 }
 
-// NewPolarisEthereumTxPool creates a new Ethereum transaction pool.
-func NewPolarisEthereumTxPool() *EthTxPool {
+// NewJinxEthereumTxPool creates a new Ethereum transaction pool.
+func NewJinxEthereumTxPool() *EthTxPool {
 	tpp := EthereumTxPriorityPolicy{
 		baseFee: big.NewInt(0),
 	}

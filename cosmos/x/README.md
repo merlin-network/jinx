@@ -1,5 +1,5 @@
-# Polaris Cosmos-SDK Modules
+# Jinx Cosmos-SDK Modules
 
-Polaris implements the following custom modules:
+Jinx implements the following custom modules:
 
-* `evm` - Intergrates the Polaris Ethereum as a Cosmos-SDK module
+* `evm` - Intergrates the Jinx Ethereum as a Cosmos-SDK module

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BUSL-1.1
 #
-# Copyright (C) 2023, Berachain Foundation. All rights reserved.
+# Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 # Use of this software is govered by the Business Source License included
 # in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 #
@@ -26,25 +26,25 @@ MONIKER1="seed-0"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-HOMEDIR="/root/.polard"
+HOMEDIR="/root/.jinxd"
 TRACE=""
 GENESIS=$HOMEDIR/config/genesis.json
 TMP_GENESIS=$HOMEDIR/config/tmp_genesis.json
 
 
-polard init $MONIKER1 -o --chain-id $CHAINID --home "$HOMEDIR"
+jinxd init $MONIKER1 -o --chain-id $CHAINID --home "$HOMEDIR"
 
-jq '.app_state["staking"]["params"]["bond_denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
-jq '.app_state["crisis"]["constant_fee"]["denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
-jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
-jq '.app_state["evm"]["params"]["evm_denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
-jq '.app_state["mint"]["params"]["mint_denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
+jq '.app_state["staking"]["params"]["bond_denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
+jq '.app_state["crisis"]["constant_fee"]["denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
+jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
+jq '.app_state["evm"]["params"]["evm_denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
+jq '.app_state["mint"]["params"]["mint_denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
 jq '.consensus["params"]["block"]["max_gas"]="30000000"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS";
 
-polard config set client keyring-backend $KEYRING --home "$HOMEDIR"
+jinxd config set client keyring-backend $KEYRING --home "$HOMEDIR"
 
-polard keys add $KEY1 --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR"
+jinxd keys add $KEY1 --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR"
 
-polard genesis add-genesis-account $KEY1 100000000000000000000000000abera --keyring-backend $KEYRING --home "$HOMEDIR"
+jinxd genesis add-genesis-account $KEY1 100000000000000000000000000ablack --keyring-backend $KEYRING --home "$HOMEDIR"
 
-polard genesis gentx $KEY1 1000000000000000000000abera --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"
+jinxd genesis gentx $KEY1 1000000000000000000000ablack --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"

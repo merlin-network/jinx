@@ -1,4 +1,4 @@
-module pkg.berachain.dev/polaris/contracts
+module pkg.berachain.dev/jinx/contracts
 
 go 1.20
 

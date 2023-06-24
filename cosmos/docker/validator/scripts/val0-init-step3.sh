@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BUSL-1.1
 #
-# Copyright (C) 2023, Berachain Foundation. All rights reserved.
+# Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 # Use of this software is govered by the Business Source License included
 # in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 #
@@ -20,7 +20,7 @@
 
 KEY1="val0"
 KEYRING="test"
-HOMEDIR="/root/.polard"
+HOMEDIR="/root/.jinxd"
 VAL_JSON="$HOMEDIR/config/validator.json"
 
 # Generating a JSON string (https://stackoverflow.com/a/48470227)
@@ -44,4 +44,4 @@ validator_json_string=$(
 # Creating the JSON file
 echo $validator_json_string > $VAL_JSON
 
-polard tx staking create-validator $VAL_JSON --from $KEY1 --home "$HOMEDIR"
+jinxd tx staking create-validator $VAL_JSON --from $KEY1 --home "$HOMEDIR"

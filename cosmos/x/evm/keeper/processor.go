@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -25,8 +25,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"pkg.berachain.dev/polaris/eth/core"
-	coretypes "pkg.berachain.dev/polaris/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/core"
+	coretypes "pkg.berachain.dev/jinx/eth/core/types"
 )
 
 // ProcessTransaction is called during the DeliverTx processing of the ABCI lifecycle.
@@ -39,7 +39,7 @@ func (k *Keeper) ProcessTransaction(ctx context.Context, tx *coretypes.Transacti
 		"reset gas meter prior to ethereum state transition")
 
 	// Process the transaction and return the EVM's execution result.
-	execResult, err := k.polaris.ProcessTransaction(ctx, tx)
+	execResult, err := k.jinx.ProcessTransaction(ctx, tx)
 	if err != nil {
 		return nil, err
 	}

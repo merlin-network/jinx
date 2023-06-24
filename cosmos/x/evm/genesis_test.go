@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -32,14 +32,14 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
-	"pkg.berachain.dev/polaris/cosmos/precompile/staking"
-	testutil "pkg.berachain.dev/polaris/cosmos/testing/utils"
-	"pkg.berachain.dev/polaris/cosmos/x/evm"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/keeper"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state"
-	evmmempool "pkg.berachain.dev/polaris/cosmos/x/evm/plugins/txpool/mempool"
-	"pkg.berachain.dev/polaris/eth/core"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
+	"pkg.berachain.dev/jinx/cosmos/precompile/staking"
+	testutil "pkg.berachain.dev/jinx/cosmos/testing/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/evm"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/keeper"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state"
+	evmmempool "pkg.berachain.dev/jinx/cosmos/x/evm/plugins/txpool/mempool"
+	"pkg.berachain.dev/jinx/eth/core"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -67,7 +67,7 @@ var _ = Describe("", func() {
 			ak, sk,
 			storetypes.NewKVStoreKey("evm"),
 			"authority",
-			evmmempool.NewPolarisEthereumTxPool(),
+			evmmempool.NewJinxEthereumTxPool(),
 			func() *ethprecompile.Injector {
 				return ethprecompile.NewPrecompiles([]ethprecompile.Registrable{sc}...)
 			},

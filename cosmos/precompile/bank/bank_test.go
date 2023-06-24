@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -32,17 +32,17 @@ import (
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 
-	libgenerated "pkg.berachain.dev/polaris/contracts/bindings/cosmos/lib"
-	generated "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/bank"
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/cosmos/precompile"
-	"pkg.berachain.dev/polaris/cosmos/precompile/bank"
-	testutil "pkg.berachain.dev/polaris/cosmos/testing/utils"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/precompile/log"
-	evmtypes "pkg.berachain.dev/polaris/cosmos/x/evm/types"
-	"pkg.berachain.dev/polaris/eth/common"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/lib/utils"
+	libgenerated "pkg.berachain.dev/jinx/contracts/bindings/cosmos/lib"
+	generated "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/bank"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/cosmos/precompile"
+	"pkg.berachain.dev/jinx/cosmos/precompile/bank"
+	testutil "pkg.berachain.dev/jinx/cosmos/testing/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/precompile/log"
+	evmtypes "pkg.berachain.dev/jinx/cosmos/x/evm/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/lib/utils"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -133,7 +133,7 @@ var _ = Describe("Bank Precompile Test", func() {
 			caller common.Address
 		)
 
-		denom := "abera"
+		denom := "ablack"
 		denom2 := "atoken"
 
 		When("GetBalance", func() {
@@ -550,16 +550,16 @@ var _ = Describe("Bank Precompile Test", func() {
 
 			It("should succeed", func() {
 				expectedResult := generated.IBankModuleDenomMetadata{
-					Name:        "Berachain bera",
-					Symbol:      "BERA",
-					Description: "The Bera.",
+					Name:        "Blackchain black",
+					Symbol:      "BLACK",
+					Description: "The Black.",
 					DenomUnits: []generated.IBankModuleDenomUnit{
-						{Denom: "bera", Exponent: uint32(0), Aliases: []string{"bera"}},
-						{Denom: "nbera", Exponent: uint32(9), Aliases: []string{"nanobera"}},
-						{Denom: "abera", Exponent: uint32(18), Aliases: []string{"attobera"}},
+						{Denom: "black", Exponent: uint32(0), Aliases: []string{"black"}},
+						{Denom: "nblack", Exponent: uint32(9), Aliases: []string{"nanoblack"}},
+						{Denom: "ablack", Exponent: uint32(18), Aliases: []string{"attoblack"}},
 					},
-					Base:    "abera",
-					Display: "bera",
+					Base:    "ablack",
+					Display: "black",
 				}
 
 				metadata := getTestMetadata()
@@ -732,16 +732,16 @@ func FundAccount(ctx sdk.Context, bk bankkeeper.BaseKeeper, account sdk.AccAddre
 func getTestMetadata() []banktypes.Metadata {
 	return []banktypes.Metadata{
 		{
-			Name:        "Berachain bera",
-			Symbol:      "BERA",
-			Description: "The Bera.",
+			Name:        "Blackchain black",
+			Symbol:      "BLACK",
+			Description: "The Black.",
 			DenomUnits: []*banktypes.DenomUnit{
-				{Denom: "bera", Exponent: uint32(0), Aliases: []string{"bera"}},
-				{Denom: "nbera", Exponent: uint32(9), Aliases: []string{"nanobera"}},
-				{Denom: "abera", Exponent: uint32(18), Aliases: []string{"attobera"}},
+				{Denom: "black", Exponent: uint32(0), Aliases: []string{"black"}},
+				{Denom: "nblack", Exponent: uint32(9), Aliases: []string{"nanoblack"}},
+				{Denom: "ablack", Exponent: uint32(18), Aliases: []string{"attoblack"}},
 			},
-			Base:    "abera",
-			Display: "bera",
+			Base:    "ablack",
+			Display: "black",
 		},
 		{
 			Name:        "Token",

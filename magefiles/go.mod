@@ -1,4 +1,4 @@
-module pkg.berachain.dev/polaris/magefiles
+module pkg.berachain.dev/jinx/magefiles
 
 go 1.20
 

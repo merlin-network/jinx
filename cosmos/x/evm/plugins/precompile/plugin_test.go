@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -28,13 +28,13 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	testutil "pkg.berachain.dev/polaris/cosmos/testing/utils"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state/events"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state/events/mock"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/eth/core/vm"
-	"pkg.berachain.dev/polaris/lib/utils"
+	testutil "pkg.berachain.dev/jinx/cosmos/testing/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state/events"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state/events/mock"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/eth/core/vm"
+	"pkg.berachain.dev/jinx/lib/utils"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -100,7 +100,7 @@ func (me *mockEVM) GetStateDB() vm.GethStateDB {
 }
 
 type mockSDB struct {
-	vm.PolarisStateDB
+	vm.JinxStateDB
 	ctx sdk.Context
 }
 

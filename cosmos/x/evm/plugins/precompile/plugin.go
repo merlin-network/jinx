@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -27,16 +27,16 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/eth/core/vm"
-	"pkg.berachain.dev/polaris/eth/params"
-	"pkg.berachain.dev/polaris/lib/registry"
-	libtypes "pkg.berachain.dev/polaris/lib/types"
-	"pkg.berachain.dev/polaris/lib/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/eth/core/vm"
+	"pkg.berachain.dev/jinx/eth/params"
+	"pkg.berachain.dev/jinx/lib/registry"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 // Plugin is the interface that must be implemented by the plugin.
@@ -126,8 +126,8 @@ func (p *plugin) Run(
 	// consume static gas from RequiredGas
 	gm.ConsumeGas(pc.RequiredGas(input), "RequiredGas")
 
-	// get native Cosmos SDK context from the Polaris StateDB
-	sdb := utils.MustGetAs[vm.PolarisStateDB](evm.GetStateDB())
+	// get native Cosmos SDK context from the Jinx StateDB
+	sdb := utils.MustGetAs[vm.JinxStateDB](evm.GetStateDB())
 	ctx := sdk.UnwrapSDKContext(sdb.GetContext())
 
 	// disable reentrancy into the EVM
@@ -161,10 +161,10 @@ func (p *plugin) Run(
 //
 // EnableReentrancy implements core.PrecompilePlugin.
 func (p *plugin) EnableReentrancy(evm ethprecompile.EVM) {
-	p.enableReentrancy(utils.MustGetAs[vm.PolarisStateDB](evm.GetStateDB()))
+	p.enableReentrancy(utils.MustGetAs[vm.JinxStateDB](evm.GetStateDB()))
 }
 
-func (p *plugin) enableReentrancy(sdb vm.PolarisStateDB) {
+func (p *plugin) enableReentrancy(sdb vm.JinxStateDB) {
 	sdkCtx := sdk.UnwrapSDKContext(sdb.GetContext())
 
 	// pause precompile execution => stop emitting Cosmos event as Eth logs for now
@@ -183,10 +183,10 @@ func (p *plugin) enableReentrancy(sdb vm.PolarisStateDB) {
 //
 // DisableReentrancy implements core.PrecompilePlugin.
 func (p *plugin) DisableReentrancy(evm ethprecompile.EVM) {
-	p.disableReentrancy(utils.MustGetAs[vm.PolarisStateDB](evm.GetStateDB()))
+	p.disableReentrancy(utils.MustGetAs[vm.JinxStateDB](evm.GetStateDB()))
 }
 
-func (p *plugin) disableReentrancy(sdb vm.PolarisStateDB) {
+func (p *plugin) disableReentrancy(sdb vm.JinxStateDB) {
 	sdkCtx := sdk.UnwrapSDKContext(sdb.GetContext())
 
 	// resume precompile execution => begin emitting Cosmos event as Eth logs again

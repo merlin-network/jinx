@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -26,13 +26,13 @@ import (
 	distrkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
 	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
 
-	authprecompile "pkg.berachain.dev/polaris/cosmos/precompile/auth"
-	bankprecompile "pkg.berachain.dev/polaris/cosmos/precompile/bank"
-	distrprecompile "pkg.berachain.dev/polaris/cosmos/precompile/distribution"
-	erc20precompile "pkg.berachain.dev/polaris/cosmos/precompile/erc20"
-	govprecompile "pkg.berachain.dev/polaris/cosmos/precompile/governance"
-	stakingprecompile "pkg.berachain.dev/polaris/cosmos/precompile/staking"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
+	authprecompile "pkg.berachain.dev/jinx/cosmos/precompile/auth"
+	bankprecompile "pkg.berachain.dev/jinx/cosmos/precompile/bank"
+	distrprecompile "pkg.berachain.dev/jinx/cosmos/precompile/distribution"
+	erc20precompile "pkg.berachain.dev/jinx/cosmos/precompile/erc20"
+	govprecompile "pkg.berachain.dev/jinx/cosmos/precompile/governance"
+	stakingprecompile "pkg.berachain.dev/jinx/cosmos/precompile/staking"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
 )
 
 // PrecompilesToInject returns a function that provides the initialization of the standard

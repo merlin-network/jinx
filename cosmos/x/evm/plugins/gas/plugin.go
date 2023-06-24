@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -28,13 +28,13 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins"
-	"pkg.berachain.dev/polaris/eth/core"
-	"pkg.berachain.dev/polaris/eth/core/vm"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins"
+	"pkg.berachain.dev/jinx/eth/core"
+	"pkg.berachain.dev/jinx/eth/core/vm"
 )
 
 // gasMeterDescriptor is the descriptor for the gas meter used in the plugin.
-const gasMeterDescriptor = `polaris-gas-plugin`
+const gasMeterDescriptor = `jinx-gas-plugin`
 
 // Plugin is the interface that must be implemented by the plugin.
 type Plugin interface {
@@ -103,7 +103,7 @@ func (p *plugin) GasConsumed() uint64 {
 }
 
 // BlockGasConsumed returns the cumulative gas used during the current block. If the cumulative
-// gas used is greater than the block gas limit, we expect for Polaris to handle it.
+// gas used is greater than the block gas limit, we expect for Jinx to handle it.
 //
 // BlockGasConsumed implements the core.GasPlugin interface.
 func (p *plugin) BlockGasConsumed() uint64 {

@@ -1,4 +1,4 @@
-module pkg.berachain.dev/polaris/lib
+module pkg.berachain.dev/jinx/lib
 
 go 1.20
 

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BUSL-1.1
 #
-# Copyright (C) 2023, Berachain Foundation. All rights reserved.
+# Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 # Use of this software is govered by the Business Source License included
 # in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 #
@@ -18,12 +18,12 @@
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND
 # TITLE.
 
-CONTAINER0="polard-node0"
-CONTAINER1="polard-node1"
-CONTAINER2="polard-node2"
-CONTAINER3="polard-node3"
+CONTAINER0="jinxd-node0"
+CONTAINER1="jinxd-node1"
+CONTAINER2="jinxd-node2"
+CONTAINER3="jinxd-node3"
 
-HOMEDIR="/root/.polard"
+HOMEDIR="/root/.jinxd"
 SCRIPTS="/scripts"
 
 rm -rf ./temp
@@ -87,7 +87,7 @@ docker cp ./temp/genesis.json $CONTAINER3:$HOMEDIR/config/genesis.json
 # docker exec -it $CONTAINER2 bash -c "$SCRIPTS/seed-start.sh"
 # docker exec -it $CONTAINER3 bash -c "$SCRIPTS/seed-start.sh"
 
-# docker exec -it polard-node0 bash -c "/scripts/seed-start.sh"
-# docker exec -it polard-node1 bash -c "/scripts/seed-start.sh"
-# docker exec -it polard-node2 bash -c "/scripts/seed-start.sh"
-# docker exec -it polard-node3 bash -c "/scripts/seed-start.sh"
+# docker exec -it jinxd-node0 bash -c "/scripts/seed-start.sh"
+# docker exec -it jinxd-node1 bash -c "/scripts/seed-start.sh"
+# docker exec -it jinxd-node2 bash -c "/scripts/seed-start.sh"
+# docker exec -it jinxd-node3 bash -c "/scripts/seed-start.sh"

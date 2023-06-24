@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -50,11 +50,11 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"pkg.berachain.dev/polaris/cosmos/testing/types/mock"
-	"pkg.berachain.dev/polaris/cosmos/types"
-	erc20types "pkg.berachain.dev/polaris/cosmos/x/erc20/types"
-	evmtypes "pkg.berachain.dev/polaris/cosmos/x/evm/types"
-	"pkg.berachain.dev/polaris/eth/common"
+	"pkg.berachain.dev/jinx/cosmos/testing/types/mock"
+	"pkg.berachain.dev/jinx/cosmos/types"
+	erc20types "pkg.berachain.dev/jinx/cosmos/x/erc20/types"
+	evmtypes "pkg.berachain.dev/jinx/cosmos/x/evm/types"
+	"pkg.berachain.dev/jinx/eth/common"
 )
 
 var (
@@ -89,8 +89,8 @@ type TestEncodingConfig struct {
 func MakeTestEncodingConfig(modules ...module.AppModuleBasic) TestEncodingConfig {
 	aminoCodec := codec.NewLegacyAmino()
 	interfaceRegistry := codectestutil.CodecOptions{
-		AccAddressPrefix: "polar",
-		ValAddressPrefix: "polarvaloper",
+		AccAddressPrefix: "jinx",
+		ValAddressPrefix: "jinxvaloper",
 	}.NewInterfaceRegistry()
 	codec := codec.NewProtoCodec(interfaceRegistry)
 

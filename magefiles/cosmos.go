@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -44,7 +44,7 @@ var (
 	dockerRun    = RunCmdV("docker", "run")
 
 	// Variables.
-	imageName              = "polard"
+	imageName              = "jinxd"
 	imageVersion           = "v0.0.0"
 	baseDockerPath         = "./cosmos/docker/"
 	execDockerPath         = baseDockerPath + "base.Dockerfile"
@@ -78,7 +78,7 @@ func Start() error {
 // Builds the Cosmos SDK chain.
 func (Cosmos) Build() error {
 	LogGreen("Building the Cosmos SDK chain...")
-	cmd := "polard"
+	cmd := "jinxd"
 	args := []string{
 		generateBuildTags(),
 		generateLinkerFlags(production, statically),
@@ -107,7 +107,7 @@ func (c Cosmos) Docker(dockerType, arch string) error {
 }
 
 func (c Cosmos) RunDockerLocal() error {
-	return dockerRun("-p", "8545:8545", "polard-local:v0.0.0")
+	return dockerRun("-p", "8545:8545", "jinxd-local:v0.0.0")
 }
 
 func (c Cosmos) DockerX(dockerType, arch string) error {
@@ -128,7 +128,7 @@ func (c Cosmos) dockerBuildBeradWith(dockerType, goVersion, arch string, withX b
 	}
 	tag := imageName + "/" + dockerType + ":" + imageVersion
 	LogGreen(
-		"Building a "+dockerType+" polard docker image",
+		"Building a "+dockerType+" jinxd docker image",
 		"platform", "linux"+"/"+arch,
 		"tag", tag,
 	)
@@ -150,7 +150,7 @@ func (c Cosmos) DockerDebug() error {
 	return c.dockerBuildNode("debug", execDockerPath, goVersion, version, runtime.GOARCH, false)
 }
 
-// Build a docker image for polard with the supplied arguments.
+// Build a docker image for jinxd with the supplied arguments.
 func (c Cosmos) dockerBuildNode(name, dockerFilePath, goVersion, imageVersion, arch string, withX bool) error {
 	return dockerBuildFn(withX)(
 		"--build-arg", "GO_VERSION="+goVersion,
@@ -175,7 +175,7 @@ func (Cosmos) Install() error {
 	args := []string{
 		generateBuildTags(),
 		generateLinkerFlags(production, statically),
-		"./cosmos/simapp/polard",
+		"./cosmos/simapp/jinxd",
 	}
 
 	return goInstall(args...)
@@ -214,7 +214,7 @@ func (c Cosmos) TestIntegration() error {
 
 func (c Cosmos) DockerBuildHive() error {
 	LogGreen("Building hive docker image for the Cosmos SDK chain...")
-	return c.dockerBuildNode("polard-base", execDockerPath, goVersion, "test-hive", runtime.GOARCH, false)
+	return c.dockerBuildNode("jinxd-base", execDockerPath, goVersion, "test-hive", runtime.GOARCH, false)
 }
 
 func (c Cosmos) TestHive(sim string) error {
@@ -226,7 +226,7 @@ func (c Cosmos) TestHive(sim string) error {
 		return err
 	}
 
-	return Hive{}.TestV(sim, "polard")
+	return Hive{}.TestV(sim, "jinxd")
 }
 
 func dockerBuildFn(useX bool) func(args ...string) error {

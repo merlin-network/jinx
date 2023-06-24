@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -28,9 +28,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"pkg.berachain.dev/polaris/cosmos/x/erc20/store"
-	"pkg.berachain.dev/polaris/cosmos/x/erc20/types"
-	"pkg.berachain.dev/polaris/eth/common"
+	"pkg.berachain.dev/jinx/cosmos/x/erc20/store"
+	"pkg.berachain.dev/jinx/cosmos/x/erc20/types"
+	"pkg.berachain.dev/jinx/eth/common"
 )
 
 // Keeper of this module maintains collections of erc20.
@@ -58,13 +58,13 @@ func (k *Keeper) DenomKVStore(ctx sdk.Context) store.DenomKVStore {
 	return store.NewDenomKVStore(ctx.KVStore(k.storeKey))
 }
 
-// RegisterERC20CoinPair registers a new ERC20 originated token <> Polaris Coin pair and returns
-// the new Polaris Coin denom.
+// RegisterERC20CoinPair registers a new ERC20 originated token <> Jinx Coin pair and returns
+// the new Jinx Coin denom.
 func (k *Keeper) RegisterERC20CoinPair(ctx sdk.Context, token common.Address) string {
-	// store the denomination as a Polaris coin denomination.
-	polarisDenom := types.NewPolarisDenomForAddress(token)
-	k.DenomKVStore(ctx).SetAddressDenomPair(token, polarisDenom)
-	return polarisDenom
+	// store the denomination as a Jinx coin denomination.
+	jinxDenom := types.NewJinxDenomForAddress(token)
+	k.DenomKVStore(ctx).SetAddressDenomPair(token, jinxDenom)
+	return jinxDenom
 }
 
 // RegisterCoinERC20Pair registers a new IBC-originated SDK Coin <> ERC20 token pair.

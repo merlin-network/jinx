@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -26,28 +26,28 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkmempool "github.com/cosmos/cosmos-sdk/types/mempool"
 
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/block"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/configuration"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/gas"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/historical"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/precompile"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/precompile/log"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/txpool"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/txpool/mempool"
-	"pkg.berachain.dev/polaris/eth/core"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/lib/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/block"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/configuration"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/gas"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/historical"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/precompile"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/precompile/log"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/txpool"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/txpool/mempool"
+	"pkg.berachain.dev/jinx/eth/core"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 // Compile-time interface assertion.
-var _ core.PolarisHostChain = (*host)(nil)
+var _ core.JinxHostChain = (*host)(nil)
 
 // Host is the interface that must be implemented by the host.
-// It includes core.PolarisHostChain and functions that are called in other packages.
+// It includes core.JinxHostChain and functions that are called in other packages.
 type Host interface {
-	core.PolarisHostChain
+	core.JinxHostChain
 	GetAllPlugins() []plugins.Base
 	Setup(
 		storetypes.StoreKey,
@@ -58,7 +58,7 @@ type Host interface {
 }
 
 type host struct {
-	// The various plugins that are are used to implement core.PolarisHostChain.
+	// The various plugins that are are used to implement core.JinxHostChain.
 	bp  block.Plugin
 	cp  configuration.Plugin
 	gp  gas.Plugin

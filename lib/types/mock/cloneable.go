@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -25,7 +25,7 @@
 
 package mock
 
-import libtypes "pkg.berachain.dev/polaris/lib/types"
+import libtypes "pkg.berachain.dev/jinx/lib/types"
 
 //go:generate moq -out ./cloneable.mock.go -pkg mock ../ Cloneable
 

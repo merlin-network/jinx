@@ -9,7 +9,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/event"
 	"math/big"
-	ethcore "pkg.berachain.dev/polaris/eth/core"
+	ethcore "pkg.berachain.dev/jinx/eth/core"
 	"sync"
 )
 

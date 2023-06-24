@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: BUSL-1.1
 #
-# Copyright (C) 2023, Berachain Foundation. All rights reserved.
+# Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 # Use of this software is govered by the Business Source License included
 # in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 #
@@ -44,7 +44,7 @@ for dir in $proto_dirs; do
 done
 
 # move proto files to the right places
-cp -r pkg.berachain.dev/polaris/cosmos/* ../
+cp -r pkg.berachain.dev/jinx/cosmos/* ../
 rm -rf pkg.berachain.dev
 
 cd ../

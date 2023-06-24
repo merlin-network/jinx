@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -27,17 +27,17 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	cbindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos"
-	bbindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/bank"
-	bindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/erc20"
-	tbindings "pkg.berachain.dev/polaris/contracts/bindings/testing"
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/cosmos/testing/integration"
-	erc20types "pkg.berachain.dev/polaris/cosmos/x/erc20/types"
+	cbindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos"
+	bbindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/bank"
+	bindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/erc20"
+	tbindings "pkg.berachain.dev/jinx/contracts/bindings/testing"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/cosmos/testing/integration"
+	erc20types "pkg.berachain.dev/jinx/cosmos/x/erc20/types"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	. "pkg.berachain.dev/polaris/cosmos/testing/integration/utils"
+	. "pkg.berachain.dev/jinx/cosmos/testing/integration/utils"
 )
 
 func TestERC20Precompile(t *testing.T) {
@@ -85,11 +85,11 @@ var _ = Describe("ERC20", func() {
 			})
 
 			It("should handle non-empty inputs", func() {
-				token, err := erc20Precompile.Erc20AddressForCoinDenom(nil, "abera")
+				token, err := erc20Precompile.Erc20AddressForCoinDenom(nil, "ablack")
 				Expect(err).ToNot(HaveOccurred())
 				Expect(token).To(Equal(common.Address{}))
 
-				tokenAddr := common.BytesToAddress([]byte("abera"))
+				tokenAddr := common.BytesToAddress([]byte("ablack"))
 				tokenBech32 := cosmlib.AddressToAccAddress(tokenAddr).String()
 
 				denom, err := erc20Precompile.CoinDenomForERC20Address(nil, tokenAddr)
@@ -141,7 +141,7 @@ var _ = Describe("ERC20", func() {
 				// check that the new ERC20 is minted to TestAddress
 				tokenAddr, err := erc20Precompile.Erc20AddressForCoinDenom(nil, "bOSMO")
 				Expect(err).ToNot(HaveOccurred())
-				token, err := cbindings.NewPolarisERC20(tokenAddr, tf.EthClient)
+				token, err := cbindings.NewJinxERC20(tokenAddr, tf.EthClient)
 				Expect(err).ToNot(HaveOccurred())
 				balance, err := token.BalanceOf(nil, tf.Address("alice"))
 				Expect(err).ToNot(HaveOccurred())
@@ -200,7 +200,7 @@ var _ = Describe("ERC20", func() {
 				Expect(err).ToNot(HaveOccurred())
 				Expect(bal).To(Equal(big.NewInt(123456789)))
 
-				// token already exists, create new Polaris denom
+				// token already exists, create new Jinx denom
 				_, err = erc20Precompile.TransferERC20ToCoin(
 					tf.GenerateTransactOpts("alice"),
 					token,
@@ -220,7 +220,7 @@ var _ = Describe("ERC20", func() {
 				Expect(err).ToNot(HaveOccurred())
 				Expect(bal).To(Equal(big.NewInt(123456789)))
 				bankBal, err := bankPrecompile.GetBalance(
-					nil, tf.Address("alice"), erc20types.NewPolarisDenomForAddress(token),
+					nil, tf.Address("alice"), erc20types.NewJinxDenomForAddress(token),
 				)
 				Expect(err).ToNot(HaveOccurred())
 				Expect(bankBal.Cmp(big.NewInt(0))).To(Equal(0))
@@ -237,7 +237,7 @@ var _ = Describe("ERC20", func() {
 				Expect(err).ToNot(HaveOccurred())
 				ExpectSuccessReceipt(tf.EthClient, tx)
 
-				// token already exists, create new Polaris denom
+				// token already exists, create new Jinx denom
 				_, err = erc20Precompile.TransferERC20ToCoin(
 					tf.GenerateTransactOpts("alice"),
 					token,
@@ -257,7 +257,7 @@ var _ = Describe("ERC20", func() {
 				Expect(err).ToNot(HaveOccurred())
 				Expect(bal).To(Equal(big.NewInt(6789)))
 
-				// check that the Polaris coin is minted to TestAddress
+				// check that the Jinx coin is minted to TestAddress
 				denom, err = erc20Precompile.CoinDenomForERC20Address(nil, token)
 				Expect(err).ToNot(HaveOccurred())
 				bankBal, err = bankPrecompile.GetBalance(nil, tf.Address("alice"), denom)
@@ -285,7 +285,7 @@ var _ = Describe("ERC20", func() {
 				err = tf.Network.WaitForNextBlock()
 				Expect(err).ToNot(HaveOccurred())
 
-				// check that Polaris Coin is converted back to ERC20
+				// check that Jinx Coin is converted back to ERC20
 				bal, err = contract.BalanceOf(nil, tf.Address("alice"))
 				Expect(err).ToNot(HaveOccurred())
 				Expect(bal.Cmp(big.NewInt(123456789))).To(Equal(0))
@@ -306,7 +306,7 @@ var _ = Describe("ERC20", func() {
 			ExpectSuccessReceipt(tf.EthClient, tx)
 
 			// check that the new ERC20 is minted to TestAddress
-			tokenAddr, err := swapper.GetPolarisERC20(nil, "bAKT")
+			tokenAddr, err := swapper.GetJinxERC20(nil, "bAKT")
 			Expect(err).ToNot(HaveOccurred())
 			Expect(tokenAddr.Bytes()).To(Equal(common.Address{}.Bytes()))
 
@@ -322,9 +322,9 @@ var _ = Describe("ERC20", func() {
 			ExpectSuccessReceipt(tf.EthClient, tx)
 
 			// check that the new ERC20 is minted to TestAddress
-			tokenAddr, err = swapper.GetPolarisERC20(nil, "bAKT")
+			tokenAddr, err = swapper.GetJinxERC20(nil, "bAKT")
 			Expect(err).ToNot(HaveOccurred())
-			token, err := cbindings.NewPolarisERC20(tokenAddr, tf.EthClient)
+			token, err := cbindings.NewJinxERC20(tokenAddr, tf.EthClient)
 			Expect(err).ToNot(HaveOccurred())
 			balance, err := token.BalanceOf(nil, tf.Address("alice"))
 			Expect(err).ToNot(HaveOccurred())

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -28,13 +28,13 @@ import (
 
 func (k *Keeper) BeginBlocker(ctx context.Context) error {
 	sCtx := sdk.UnwrapSDKContext(ctx)
-	// Prepare the Polaris Ethereum block.
+	// Prepare the Jinx Ethereum block.
 	k.lock = false
-	k.polaris.Prepare(ctx, uint64(sCtx.BlockHeight()))
+	k.jinx.Prepare(ctx, uint64(sCtx.BlockHeight()))
 	return nil
 }
 
 func (k *Keeper) EndBlock(ctx context.Context) error {
-	// Finalize the Polaris Ethereum block.
-	return k.polaris.Finalize(ctx)
+	// Finalize the Jinx Ethereum block.
+	return k.jinx.Finalize(ctx)
 }

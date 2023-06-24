@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -28,10 +28,10 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	gethrpc "github.com/ethereum/go-ethereum/rpc"
 
-	bindings "pkg.berachain.dev/polaris/contracts/bindings/testing"
-	"pkg.berachain.dev/polaris/cosmos/testing/network"
-	"pkg.berachain.dev/polaris/eth/common"
-	coretypes "pkg.berachain.dev/polaris/eth/core/types"
+	bindings "pkg.berachain.dev/jinx/contracts/bindings/testing"
+	"pkg.berachain.dev/jinx/cosmos/testing/network"
+	"pkg.berachain.dev/jinx/eth/common"
+	coretypes "pkg.berachain.dev/jinx/eth/core/types"
 
 	. "github.com/onsi/gomega" //nolint:stylecheck,revive,gostaticcheck  // Gomega makes sense in tests.
 )
@@ -41,8 +41,8 @@ const (
 	TxTimeout      = 30 * time.Second
 )
 
-// StartPolarisNetwork starts a new in-memory Polaris chain.
-func StartPolarisNetwork(t network.TestingT) (*network.Network, *ethclient.Client) {
+// StartJinxNetwork starts a new in-memory Jinx chain.
+func StartJinxNetwork(t network.TestingT) (*network.Network, *ethclient.Client) {
 	var err error
 	net := network.New(t)
 	time.Sleep(1 * time.Second)

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -30,10 +30,10 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	libgenerated "pkg.berachain.dev/polaris/contracts/bindings/cosmos/lib"
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/eth/common"
-	libutils "pkg.berachain.dev/polaris/lib/utils"
+	libgenerated "pkg.berachain.dev/jinx/contracts/bindings/cosmos/lib"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/eth/common"
+	libutils "pkg.berachain.dev/jinx/lib/utils"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -57,7 +57,7 @@ var _ = Describe("Attributes", func() {
 			// many coins
 			manyCoins := sdk.NewCoins(
 				sdk.NewCoin("abgt", sdkmath.NewInt(1)),
-				sdk.NewCoin("abera", sdkmath.NewInt(2)),
+				sdk.NewCoin("ablack", sdkmath.NewInt(2)),
 				sdk.NewCoin("ahoney", sdkmath.NewInt(3)),
 			)
 			coins, err = ConvertSdkCoins(manyCoins.String())
@@ -66,7 +66,7 @@ var _ = Describe("Attributes", func() {
 				[]libgenerated.CosmosCoin{
 					{
 						Amount: big.NewInt(2),
-						Denom:  "abera",
+						Denom:  "ablack",
 					},
 					{
 						Amount: big.NewInt(1),

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -31,11 +31,11 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	generated "pkg.berachain.dev/polaris/contracts/bindings/cosmos/lib"
-	"pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/auth"
-	"pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/staking"
-	"pkg.berachain.dev/polaris/cosmos/precompile"
-	"pkg.berachain.dev/polaris/lib/utils"
+	generated "pkg.berachain.dev/jinx/contracts/bindings/cosmos/lib"
+	"pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/auth"
+	"pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/staking"
+	"pkg.berachain.dev/jinx/cosmos/precompile"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 /**

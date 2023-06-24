@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -26,7 +26,7 @@
 package ds
 
 import (
-	libtypes "pkg.berachain.dev/polaris/lib/types"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
 )
 
 // Stack is an interface represent a FILO data structure.

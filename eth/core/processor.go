@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -27,12 +27,12 @@ import (
 
 	"github.com/ethereum/go-ethereum/trie"
 
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/eth/core/types"
-	"pkg.berachain.dev/polaris/eth/core/vm"
-	"pkg.berachain.dev/polaris/lib/errors"
-	"pkg.berachain.dev/polaris/lib/utils"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/core/vm"
+	"pkg.berachain.dev/jinx/lib/errors"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 // initialTxsCapacity is the initial capacity of the transactions and receipts slice.
@@ -60,7 +60,7 @@ type StateProcessor struct {
 	// the entire block. This is done in order to reduce memory allocs.
 	evm *vm.GethEVM
 	// statedb is the state database that is used to mange state during transactions.
-	statedb vm.PolarisStateDB
+	statedb vm.JinxStateDB
 	// vmConfig is the configuration for the EVM.
 	vmConfig *vm.Config
 
@@ -79,7 +79,7 @@ func NewStateProcessor(
 	cp ConfigurationPlugin,
 	gp GasPlugin,
 	pp PrecompilePlugin,
-	statedb vm.PolarisStateDB,
+	statedb vm.JinxStateDB,
 	vmConfig *vm.Config,
 ) *StateProcessor {
 	sp := &StateProcessor{

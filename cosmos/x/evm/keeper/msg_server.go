@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -25,14 +25,14 @@ import (
 
 	errorsmod "cosmossdk.io/errors"
 
-	"pkg.berachain.dev/polaris/cosmos/x/evm/types"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/types"
 )
 
 // Compile-time check to ensure `Keeper` implements the `MsgServiceServer` interface.
 var _ types.MsgServiceServer = &Keeper{}
 
 // EthTransaction implements the  MsgServiceServer interface. It processes an incoming request
-// and applies it to the Polaris Chain.
+// and applies it to the Jinx Chain.
 func (k *Keeper) EthTransaction(
 	ctx context.Context, msg *types.WrappedEthereumTransaction,
 ) (*types.WrappedEthereumTransactionResult, error) {

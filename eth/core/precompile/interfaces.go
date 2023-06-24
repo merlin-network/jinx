@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -21,15 +21,15 @@
 package precompile
 
 import (
-	"pkg.berachain.dev/polaris/eth/accounts/abi"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/vm"
-	"pkg.berachain.dev/polaris/eth/params"
-	libtypes "pkg.berachain.dev/polaris/lib/types"
+	"pkg.berachain.dev/jinx/eth/accounts/abi"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/vm"
+	"pkg.berachain.dev/jinx/eth/params"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
 )
 
 type (
-	// Plugin defines the methods that the chain running Polaris EVM should implement in order
+	// Plugin defines the methods that the chain running Jinx EVM should implement in order
 	// to support running their own stateful precompiled contracts. Implementing this plugin is
 	// optional.
 	Plugin interface {

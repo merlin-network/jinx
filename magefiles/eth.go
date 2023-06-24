@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -43,12 +43,12 @@ func (e Eth) Test() error {
 
 // Runs all unit tests for the Cosmos SDK chain.
 func (e Eth) TestUnit() error {
-	LogGreen("Running all Polaris Ethereum unit tests...")
+	LogGreen("Running all Jinx Ethereum unit tests...")
 	return testUnit(e.directory())
 }
 
 // Runs all integration for the Cosmos SDK chain.
 func (e Eth) TestIntegration() error {
-	LogGreen("Running all Polaris Ethereum integration tests...")
+	LogGreen("Running all Jinx Ethereum integration tests...")
 	return testIntegration(e.directory())
 }

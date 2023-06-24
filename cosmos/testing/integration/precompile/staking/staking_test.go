@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -29,16 +29,16 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 
-	bbindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/bank"
-	bindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/staking"
-	tbindings "pkg.berachain.dev/polaris/contracts/bindings/testing"
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/cosmos/testing/integration"
-	"pkg.berachain.dev/polaris/eth/common"
+	bbindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/bank"
+	bindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/staking"
+	tbindings "pkg.berachain.dev/jinx/contracts/bindings/testing"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/cosmos/testing/integration"
+	"pkg.berachain.dev/jinx/eth/common"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	. "pkg.berachain.dev/polaris/cosmos/testing/integration/utils"
+	. "pkg.berachain.dev/jinx/cosmos/testing/integration/utils"
 )
 
 func TestStakingPrecompile(t *testing.T) {
@@ -149,7 +149,7 @@ var _ = Describe("Staking", func() {
 		amt := big.NewInt(123450000000)
 		tx, err = bankPrecompile.Send(txr, tf.Address("alice"), contractAddr, []bbindings.CosmosCoin{
 			{
-				Denom:  "abera",
+				Denom:  "ablack",
 				Amount: amt,
 			},
 		})

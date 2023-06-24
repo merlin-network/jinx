@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -23,16 +23,16 @@ package erc20
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	erc20types "pkg.berachain.dev/polaris/cosmos/x/erc20/types"
-	"pkg.berachain.dev/polaris/eth/common"
+	erc20types "pkg.berachain.dev/jinx/cosmos/x/erc20/types"
+	"pkg.berachain.dev/jinx/eth/common"
 )
 
 type (
 	ERC20Module interface { //nolint:revive // good name.
 		erc20types.QueryServiceServer
 
-		// RegisterERC20CoinPair registers a new ERC20 originated token <> Polaris Coin pair and
-		// returns the new Polaris Coin denom.
+		// RegisterERC20CoinPair registers a new ERC20 originated token <> Jinx Coin pair and
+		// returns the new Jinx Coin denom.
 		RegisterERC20CoinPair(ctx sdk.Context, token common.Address) string
 
 		// RegisterCoinERC20Pair registers a new IBC-originated SDK Coin <> ERC20 token pair.

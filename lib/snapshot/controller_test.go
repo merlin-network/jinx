@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -28,9 +28,9 @@ package snapshot
 import (
 	"testing"
 
-	libtypes "pkg.berachain.dev/polaris/lib/types"
-	typesmock "pkg.berachain.dev/polaris/lib/types/mock"
-	"pkg.berachain.dev/polaris/lib/utils"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
+	typesmock "pkg.berachain.dev/jinx/lib/types/mock"
+	"pkg.berachain.dev/jinx/lib/utils"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

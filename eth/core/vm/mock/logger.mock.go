@@ -7,7 +7,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	ethereumcorevm "github.com/ethereum/go-ethereum/core/vm"
 	"math/big"
-	ethcorevm "pkg.berachain.dev/polaris/eth/core/vm"
+	ethcorevm "pkg.berachain.dev/jinx/eth/core/vm"
 	"sync"
 )
 

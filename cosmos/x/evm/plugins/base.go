@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -23,16 +23,16 @@ package plugins
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"pkg.berachain.dev/polaris/eth/core"
+	"pkg.berachain.dev/jinx/eth/core"
 )
 
-// Base is the base interface which all x/evm Polaris plugins must implement
+// Base is the base interface which all x/evm Jinx plugins must implement
 
 type Base interface {
 	IsPlugin()
 }
 
-// HasGenesis represents the base class that all x/evm Polaris plugins which have
+// HasGenesis represents the base class that all x/evm Jinx plugins which have
 // InitGenesis or ExportGenesis methods must implement
 
 type HasGenesis interface {

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -21,18 +21,18 @@
 package state
 
 import (
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/state/journal"
-	coretypes "pkg.berachain.dev/polaris/eth/core/types"
-	"pkg.berachain.dev/polaris/eth/core/vm"
-	"pkg.berachain.dev/polaris/eth/params"
-	"pkg.berachain.dev/polaris/lib/snapshot"
-	libtypes "pkg.berachain.dev/polaris/lib/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/state/journal"
+	coretypes "pkg.berachain.dev/jinx/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/core/vm"
+	"pkg.berachain.dev/jinx/eth/params"
+	"pkg.berachain.dev/jinx/lib/snapshot"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
 )
 
 // stateDB is a struct that holds the plugins and controller to manage Ethereum state.
 type stateDB struct {
-	// Plugin is injected by the chain running the Polaris EVM.
+	// Plugin is injected by the chain running the Jinx EVM.
 	Plugin
 
 	// Journals built internally and required for the stateDB.
@@ -46,19 +46,19 @@ type stateDB struct {
 	ctrl libtypes.Controller[string, libtypes.Controllable[string]]
 }
 
-// NewStateDB returns a vm.PolarisStateDB with the given StatePlugin and new journals.
-func NewStateDB(sp Plugin) vm.PolarisStateDB {
+// NewStateDB returns a vm.JinxStateDB with the given StatePlugin and new journals.
+func NewStateDB(sp Plugin) vm.JinxStateDB {
 	return newStateDBWithJournals(
 		sp, journal.NewLogs(), journal.NewRefund(), journal.NewAccesslist(),
 		journal.NewSuicides(sp), journal.NewTransientStorage(),
 	)
 }
 
-// newStateDBWithJournals returns a vm.PolarisStateDB with the given StatePlugin and journals.
+// newStateDBWithJournals returns a vm.JinxStateDB with the given StatePlugin and journals.
 func newStateDBWithJournals(
 	sp Plugin, lj journal.Log, rj journal.Refund, aj journal.Accesslist,
 	sj journal.Suicides, tj journal.TransientStorage,
-) vm.PolarisStateDB {
+) vm.JinxStateDB {
 	// Build the controller and register the plugins and journals
 	ctrl := snapshot.NewController[string, libtypes.Controllable[string]]()
 	_ = ctrl.Register(sp)
@@ -83,12 +83,12 @@ func newStateDBWithJournals(
 // Snapshot
 // =============================================================================
 
-// Snapshot implements vm.PolarisStateDB.
+// Snapshot implements vm.JinxStateDB.
 func (sdb *stateDB) Snapshot() int {
 	return sdb.ctrl.Snapshot()
 }
 
-// RevertToSnapshot implements vm.PolarisStateDB.
+// RevertToSnapshot implements vm.JinxStateDB.
 func (sdb *stateDB) RevertToSnapshot(id int) {
 	sdb.ctrl.RevertToSnapshot(id)
 }
@@ -113,9 +113,9 @@ func (sdb *stateDB) Commit(deleteEmptyObjects bool) (common.Hash, error) {
 // Prepare
 // =============================================================================
 
-// Implementation taken directly from the vm.PolarisStateDB in Go-Ethereum.
+// Implementation taken directly from the vm.JinxStateDB in Go-Ethereum.
 //
-// Prepare implements vm.PolarisStateDB.
+// Prepare implements vm.JinxStateDB.
 func (sdb *stateDB) Prepare(rules params.Rules, sender, coinbase common.Address,
 	dest *common.Address, precompiles []common.Address, txAccesses coretypes.AccessList) {
 	if rules.IsBerlin {
@@ -146,7 +146,7 @@ func (sdb *stateDB) Prepare(rules params.Rules, sender, coinbase common.Address,
 // PreImage
 // =============================================================================
 
-// AddPreimage implements the the vm.PolarisStateDB interface, but currently
+// AddPreimage implements the the vm.JinxStateDB interface, but currently
 // performs a no-op since the EnablePreimageRecording flag is disabled.
 func (sdb *stateDB) AddPreimage(_ common.Hash, _ []byte) {}
 
@@ -160,7 +160,7 @@ func (sdb *stateDB) Preimages() map[common.Hash][]byte {
 // Code Size
 // =============================================================================
 
-// GetCodeSize implements the vm.PolarisStateDB interface by returning the size of the
+// GetCodeSize implements the vm.JinxStateDB interface by returning the size of the
 // code associated with the given account.
 func (sdb *stateDB) GetCodeSize(addr common.Address) int {
 	return len(sdb.GetCode(addr))

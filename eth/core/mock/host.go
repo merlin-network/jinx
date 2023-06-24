@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -20,12 +20,12 @@
 
 package mock
 
-import "pkg.berachain.dev/polaris/eth/core"
+import "pkg.berachain.dev/jinx/eth/core"
 
-//go:generate moq -out ./host.mock.go -pkg mock ../ PolarisHostChain
+//go:generate moq -out ./host.mock.go -pkg mock ../ JinxHostChain
 
 func NewMockHostAndPlugins() (
-	*PolarisHostChainMock, *BlockPluginMock, *ConfigurationPluginMock, *GasPluginMock,
+	*JinxHostChainMock, *BlockPluginMock, *ConfigurationPluginMock, *GasPluginMock,
 	*HistoricalPluginMock, *PrecompilePluginMock, *StatePluginMock, *TxPoolPluginMock,
 ) {
 	bp := NewBlockPluginMock()
@@ -35,7 +35,7 @@ func NewMockHostAndPlugins() (
 	pp := NewPrecompilePluginMock()
 	sp := NewStatePluginMock()
 	tp := &TxPoolPluginMock{}
-	mockedPolarisHostChain := &PolarisHostChainMock{
+	mockedJinxHostChain := &JinxHostChainMock{
 		GetBlockPluginFunc: func() core.BlockPlugin {
 			return bp
 		},
@@ -58,5 +58,5 @@ func NewMockHostAndPlugins() (
 			return tp
 		},
 	}
-	return mockedPolarisHostChain, bp, cp, gp, hp, pp, sp, tp
+	return mockedJinxHostChain, bp, cp, gp, hp, pp, sp, tp
 }

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -25,15 +25,15 @@ import (
 
 	"github.com/ethereum/go-ethereum/params"
 
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/types"
 )
 
-//go:generate moq -out ./statedb.mock.go -pkg mock ../ PolarisStateDB
+//go:generate moq -out ./statedb.mock.go -pkg mock ../ JinxStateDB
 
 // NewEmptyStateDB creates a new `StateDBMock` instance.
-func NewEmptyStateDB() *PolarisStateDBMock {
-	mockedPolarisStateDB := &PolarisStateDBMock{
+func NewEmptyStateDB() *JinxStateDBMock {
+	mockedJinxStateDB := &JinxStateDBMock{
 		AddAddressToAccessListFunc: func(addr common.Address) {
 
 		},
@@ -136,5 +136,5 @@ func NewEmptyStateDB() *PolarisStateDBMock {
 			return false
 		},
 	}
-	return mockedPolarisStateDB
+	return mockedJinxStateDB
 }

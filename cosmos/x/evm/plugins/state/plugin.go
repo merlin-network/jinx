@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -30,16 +30,16 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state/events"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/store/snapmulti"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/types"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core"
-	ethstate "pkg.berachain.dev/polaris/eth/core/state"
-	"pkg.berachain.dev/polaris/eth/crypto"
-	"pkg.berachain.dev/polaris/lib/snapshot"
-	libtypes "pkg.berachain.dev/polaris/lib/types"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state/events"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/store/snapmulti"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core"
+	ethstate "pkg.berachain.dev/jinx/eth/core/state"
+	"pkg.berachain.dev/jinx/eth/crypto"
+	"pkg.berachain.dev/jinx/lib/snapshot"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
 )
 
 const pluginRegistryKey = `statePlugin`
@@ -214,7 +214,7 @@ func (p *plugin) Exist(addr common.Address) bool {
 	return p.ak.HasAccount(p.ctx, addr[:])
 }
 
-// Empty implements the `PolarisStateDB` interface by returning whether the state object
+// Empty implements the `JinxStateDB` interface by returning whether the state object
 // is either non-existent or empty according to the EIP161 epecification
 // (balance = nonce = code = 0)
 // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-161.md

@@ -8,4 +8,4 @@ The rpc-compat simulation is automatically run as a part of the rpc simulation t
 
 `Dockerfile`: The tests are normally cloned into the repo at runtime by `ethereum/rpc-compat` in the docker image setup, but since we are running our own test cases, the dockerfile has been modified to accomodate for that.
 
-`tests`: These tests come from `https://github.com/ethereum/execution-apis`, but since Polaris does not support `chain.rlp`, some tests have been modified locally.
+`tests`: These tests come from `https://github.com/ethereum/execution-apis`, but since Jinx does not support `chain.rlp`, some tests have been modified locally.

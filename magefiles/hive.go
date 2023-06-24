@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -33,7 +33,7 @@ import (
 	"github.com/magefile/mage/sh"
 )
 
-// custom tests for Polaris, struct follows {namespace, files_changed}
+// custom tests for Jinx, struct follows {namespace, files_changed}
 // note: this requires an existing instance of the namespace in the Hive repo
 type tests struct {
 	Name  string
@@ -48,8 +48,8 @@ var (
 	// Variables.
 	hiveClone      = os.Getenv("GOPATH") + "/src/"
 	clonePath      = hiveClone + ".hive-e2e/"
-	simulatorsPath = clonePath + "simulators/polaris/"
-	clientsPath    = clonePath + "clients/polard/"
+	simulatorsPath = clonePath + "simulators/jinx/"
+	clientsPath    = clonePath + "clients/jinxd/"
 
 	simulations = []tests{
 		{"rpc", []string{"init/genesis.json", "ethclient.hive"}},
@@ -123,11 +123,11 @@ func (h Hive) View() error {
 }
 
 func (h Hive) copyFiles() error {
-	LogGreen("Copying Polaris Hive setup files...")
+	LogGreen("Copying Jinx Hive setup files...")
 	if err := sh.RunV("mkdir", simulatorsPath); err != nil {
 		return err
 	}
-	if err := sh.RunV("cp", "-rf", baseHiveDockerPath+"clients/polard", clientsPath); err != nil {
+	if err := sh.RunV("cp", "-rf", baseHiveDockerPath+"clients/jinxd", clientsPath); err != nil {
 		return err
 	}
 	for _, sim := range simulations {

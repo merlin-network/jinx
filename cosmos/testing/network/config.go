@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -49,10 +49,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	"github.com/cosmos/cosmos-sdk/x/staking"
 
-	ethcryptocodec "pkg.berachain.dev/polaris/cosmos/crypto/codec"
-	"pkg.berachain.dev/polaris/cosmos/x/erc20"
-	"pkg.berachain.dev/polaris/cosmos/x/evm"
-	evmante "pkg.berachain.dev/polaris/cosmos/x/evm/ante"
+	ethcryptocodec "pkg.berachain.dev/jinx/cosmos/crypto/codec"
+	"pkg.berachain.dev/jinx/cosmos/x/erc20"
+	"pkg.berachain.dev/jinx/cosmos/x/evm"
+	evmante "pkg.berachain.dev/jinx/cosmos/x/evm/ante"
 
 	_ "embed"
 	_ "github.com/cosmos/cosmos-sdk/x/auth/tx/config" // import for side-effects
@@ -93,7 +93,7 @@ var (
 	ModuleBasics = module.NewBasicManager(ModuleBasicsList...)
 )
 
-func BuildPolarisEncodingConfig(mb module.BasicManager) simappparams.EncodingConfig {
+func BuildJinxEncodingConfig(mb module.BasicManager) simappparams.EncodingConfig {
 	cdc := codec.NewLegacyAmino()
 	interfaceRegistry := types.NewInterfaceRegistry()
 	codec := codec.NewProtoCodec(interfaceRegistry)

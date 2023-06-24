@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -27,12 +27,12 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	distributiontypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 
-	generated "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/distribution"
-	"pkg.berachain.dev/polaris/cosmos/precompile"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/precompile/log"
-	"pkg.berachain.dev/polaris/eth/common"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/lib/utils"
+	generated "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/distribution"
+	"pkg.berachain.dev/jinx/cosmos/precompile"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/precompile/log"
+	"pkg.berachain.dev/jinx/eth/common"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 // Contract is the precompile contract for the distribution module.

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -35,15 +35,15 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 
-	"pkg.berachain.dev/polaris/cosmos/crypto/keys/ethsecp256k1"
-	testutil "pkg.berachain.dev/polaris/cosmos/testing/utils"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state"
-	evmtypes "pkg.berachain.dev/polaris/cosmos/x/evm/types"
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core"
-	coretypes "pkg.berachain.dev/polaris/eth/core/types"
-	"pkg.berachain.dev/polaris/eth/crypto"
-	"pkg.berachain.dev/polaris/eth/params"
+	"pkg.berachain.dev/jinx/cosmos/crypto/keys/ethsecp256k1"
+	testutil "pkg.berachain.dev/jinx/cosmos/testing/utils"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state"
+	evmtypes "pkg.berachain.dev/jinx/cosmos/x/evm/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core"
+	coretypes "pkg.berachain.dev/jinx/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/crypto"
+	"pkg.berachain.dev/jinx/eth/params"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -75,7 +75,7 @@ var _ = Describe("EthTxPool", func() {
 		sp.SetNonce(addr2, 2)
 		sp.Finalize()
 		sp.Reset(ctx)
-		etp = NewPolarisEthereumTxPool()
+		etp = NewJinxEthereumTxPool()
 		etp.SetNonceRetriever(sp)
 	})
 

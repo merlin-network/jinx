@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -27,16 +27,16 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 
-	cbindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos"
-	cpbindings "pkg.berachain.dev/polaris/contracts/bindings/cosmos/precompile/erc20"
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/cosmos/precompile"
-	erc20types "pkg.berachain.dev/polaris/cosmos/x/erc20/types"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/precompile/log"
-	"pkg.berachain.dev/polaris/eth/accounts/abi"
-	"pkg.berachain.dev/polaris/eth/common"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
-	"pkg.berachain.dev/polaris/lib/utils"
+	cbindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos"
+	cpbindings "pkg.berachain.dev/jinx/contracts/bindings/cosmos/precompile/erc20"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/cosmos/precompile"
+	erc20types "pkg.berachain.dev/jinx/cosmos/x/erc20/types"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/precompile/log"
+	"pkg.berachain.dev/jinx/eth/accounts/abi"
+	"pkg.berachain.dev/jinx/eth/common"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 // Contract is the precompile contract for the auth module.
@@ -46,8 +46,8 @@ type Contract struct {
 	bk bankkeeper.Keeper
 	em ERC20Module
 
-	polarisERC20ABI abi.ABI
-	polarisERC20Bin string
+	jinxERC20ABI abi.ABI
+	jinxERC20Bin string
 }
 
 // NewPrecompileContract returns a new instance of the auth module precompile contract.
@@ -62,8 +62,8 @@ func NewPrecompileContract(bk bankkeeper.Keeper, em ERC20Module) ethprecompile.S
 		),
 		bk:              bk,
 		em:              em,
-		polarisERC20ABI: abi.MustUnmarshalJSON(cbindings.PolarisERC20MetaData.ABI),
-		polarisERC20Bin: cbindings.PolarisERC20MetaData.Bin,
+		jinxERC20ABI: abi.MustUnmarshalJSON(cbindings.JinxERC20MetaData.ABI),
+		jinxERC20Bin: cbindings.JinxERC20MetaData.Bin,
 	}
 }
 

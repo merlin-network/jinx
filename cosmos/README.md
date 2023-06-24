@@ -1,16 +1,16 @@
-# Polaris Integrated Cosmos Chain
+# Jinx Integrated Cosmos Chain
 
 ## Installation
 
 ### From Binary
 
-The easiest way to install a Cosmos-SDK Blockchain running Polaris is to download a pre-built binary. You can find the latest binaries on the [releases](https://github.com/polaris/releases) page.
+The easiest way to install a Cosmos-SDK Blockchain running Jinx is to download a pre-built binary. You can find the latest binaries on the [releases](https://github.com/jinx/releases) page.
 
 ### From Source
 
 **Step 1: Install Golang & Foundry**
 
-Go v1.20+ or higher is required for Polaris
+Go v1.20+ or higher is required for Jinx
 
 1. Install [Go 1.20+ from the official site](https://go.dev/dl/) or the method of your choice. Ensure that your `GOPATH` and `GOBIN` environment variables are properly set up by using the following commands:
 
@@ -38,30 +38,30 @@ Go v1.20+ or higher is required for Polaris
    go version
    ```
 
-[Foundry](https://book.getfoundry.sh/getting-started/installation) is required for Polaris
+[Foundry](https://book.getfoundry.sh/getting-started/installation) is required for Jinx
 
 3. Install Foundry:
    ```sh
    curl -L https://foundry.paradigm.xyz | bash
    ```
 
-**Step 2: Get Polaris source code**
+**Step 2: Get Jinx source code**
 
-Clone the `polaris` repo from the [official repo](https://github.com/berachain/polaris/) and check
+Clone the `jinx` repo from the [official repo](https://github.com/berachain/jinx/) and check
 out the `main` branch for the latest stable release.
 Build the binary.
 
 ```bash
 cd $HOME
-git clone https://github.com/berachain/polaris
-cd polaris
+git clone https://github.com/berachain/jinx
+cd jinx
 git checkout main
 go run magefiles/setup/setup.go
 ```
 
 **Step 3: Build the Node Software**
 
-Run the following command to install `polard` to your `GOPATH` and build the node. `polard` is the node daemon and CLI for interacting with a polaris node.
+Run the following command to install `jinxd` to your `GOPATH` and build the node. `jinxd` is the node daemon and CLI for interacting with a jinx node.
 
 ```bash
 mage install
@@ -72,14 +72,14 @@ mage install
 Verify your installation with the following command:
 
 ```bash
-polard version --long
+jinxd version --long
 ```
 
 A successful installation will return the following:
 
 ```bash
 name: berachain
-server_name: polard
+server_name: jinxd
 version: <x.x.x>
 commit: <Commit hash>
 build_tags: netgo,ledger

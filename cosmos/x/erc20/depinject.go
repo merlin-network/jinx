@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -28,8 +28,8 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 
-	modulev1alpha1 "pkg.berachain.dev/polaris/cosmos/api/polaris/erc20/module/v1alpha1"
-	"pkg.berachain.dev/polaris/cosmos/x/erc20/keeper"
+	modulev1alpha1 "pkg.berachain.dev/jinx/cosmos/api/jinx/erc20/module/v1alpha1"
+	"pkg.berachain.dev/jinx/cosmos/x/erc20/keeper"
 )
 
 //nolint:gochecknoinits // GRRRR fix later.

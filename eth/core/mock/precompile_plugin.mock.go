@@ -8,8 +8,8 @@ import (
 	"github.com/ethereum/go-ethereum/core/vm"
 	"github.com/ethereum/go-ethereum/params"
 	"math/big"
-	"pkg.berachain.dev/polaris/eth/core"
-	"pkg.berachain.dev/polaris/eth/core/precompile"
+	"pkg.berachain.dev/jinx/eth/core"
+	"pkg.berachain.dev/jinx/eth/core/precompile"
 	"sync"
 )
 

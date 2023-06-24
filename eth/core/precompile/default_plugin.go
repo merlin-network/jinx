@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -24,14 +24,14 @@ import (
 	"context"
 	"math/big"
 
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/vm"
-	"pkg.berachain.dev/polaris/eth/params"
-	"pkg.berachain.dev/polaris/lib/registry"
-	libtypes "pkg.berachain.dev/polaris/lib/types"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/vm"
+	"pkg.berachain.dev/jinx/eth/params"
+	"pkg.berachain.dev/jinx/lib/registry"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
 )
 
-// defaultPlugin is the default precompile plugin, should any chain running Polaris EVM not
+// defaultPlugin is the default precompile plugin, should any chain running Jinx EVM not
 // implement their own precompile plugin. Notably, this plugin can only run the default stateless
 // precompiles provided by Go-Ethereum.
 type defaultPlugin struct {

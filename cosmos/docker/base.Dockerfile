@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 #
-# Copyright (C) 2022, Berachain Foundation. All rights reserved.
+# Copyright (C) 2022, Blackchain Foundation. All rights reserved.
 # See the file LICENSE for licensing terms.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
@@ -21,10 +21,10 @@
 ARG GO_VERSION=1.20.4
 ARG GOARCH=amd64
 ARG GOOS=linux
-ARG NAME=polaris-cosmos
-ARG APP_NAME=polard
+ARG NAME=jinx-cosmos
+ARG APP_NAME=jinxd
 ARG DB_BACKEND=pebbledb
-ARG CMD_PATH=./cosmos/simapp/polard
+ARG CMD_PATH=./cosmos/simapp/jinxd
 ARG FOUNDRY_DIR=contracts
 
 #######################################################

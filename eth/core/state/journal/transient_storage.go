@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -23,9 +23,9 @@ package journal
 import (
 	"github.com/ethereum/go-ethereum/common"
 
-	"pkg.berachain.dev/polaris/lib/ds"
-	"pkg.berachain.dev/polaris/lib/ds/stack"
-	libtypes "pkg.berachain.dev/polaris/lib/types"
+	"pkg.berachain.dev/jinx/lib/ds"
+	"pkg.berachain.dev/jinx/lib/ds/stack"
+	libtypes "pkg.berachain.dev/jinx/lib/types"
 )
 
 // transientState is a representation of EIP-1153 "Transient Storage".

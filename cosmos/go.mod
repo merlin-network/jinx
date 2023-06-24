@@ -1,4 +1,4 @@
-module pkg.berachain.dev/polaris/cosmos
+module pkg.berachain.dev/jinx/cosmos
 
 go 1.20
 
@@ -7,7 +7,7 @@ replace (
 	github.com/cosmos/cosmos-sdk => github.com/cosmos/cosmos-sdk v0.46.0-beta2.0.20230608151552-9b9e319d1abc
 
 	// Required for stateful precompiles and supporting the Ethereum JSON-RPC API.
-	github.com/ethereum/go-ethereum => github.com/berachain/polaris-geth v0.0.0-20230609180942-c6acc930b404
+	github.com/ethereum/go-ethereum => github.com/berachain/jinx-geth v0.0.0-20230609180942-c6acc930b404
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 )
 
@@ -46,9 +46,9 @@ require (
 	google.golang.org/genproto v0.0.0-20230525234025-438c736192d0 // indirect
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.30.0
-	pkg.berachain.dev/polaris/contracts v0.0.0-20230522054826-1e34ff529c3e
-	pkg.berachain.dev/polaris/eth v0.0.0-20230529182942-8a54f2bce6b2
-	pkg.berachain.dev/polaris/lib v0.0.0-20230522054826-1e34ff529c3e
+	pkg.berachain.dev/jinx/contracts v0.0.0-20230522054826-1e34ff529c3e
+	pkg.berachain.dev/jinx/eth v0.0.0-20230529182942-8a54f2bce6b2
+	pkg.berachain.dev/jinx/lib v0.0.0-20230522054826-1e34ff529c3e
 )
 
 require (

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -24,9 +24,9 @@ import (
 	"cosmossdk.io/store/cachekv"
 	storetypes "cosmossdk.io/store/types"
 
-	"pkg.berachain.dev/polaris/lib/ds"
-	"pkg.berachain.dev/polaris/lib/ds/stack"
-	"pkg.berachain.dev/polaris/lib/utils"
+	"pkg.berachain.dev/jinx/lib/ds"
+	"pkg.berachain.dev/jinx/lib/ds/stack"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 const (

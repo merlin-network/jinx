@@ -6,7 +6,7 @@ package mock
 import (
 	"context"
 	"github.com/ethereum/go-ethereum/params"
-	"pkg.berachain.dev/polaris/eth/core"
+	"pkg.berachain.dev/jinx/eth/core"
 	"sync"
 )
 

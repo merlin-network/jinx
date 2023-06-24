@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -23,28 +23,28 @@ package types
 import (
 	fmt "fmt"
 
-	"pkg.berachain.dev/polaris/eth/common"
+	"pkg.berachain.dev/jinx/eth/common"
 )
 
 const (
-	// polarisDenomPrefix represents the bank module prefix all Polaris coin denominations will
+	// jinxDenomPrefix represents the bank module prefix all Jinx coin denominations will
 	// have (ERC20 originated token).
-	polarisDenomPrefix = "polaris/"
+	jinxDenomPrefix = "jinx/"
 
-	// lenPolarisDenomPrefix is the length of the polarisDenomPrefix.
-	lenPolarisDenomPrefix = 8
+	// lenJinxDenomPrefix is the length of the jinxDenomPrefix.
+	lenJinxDenomPrefix = 8
 
-	// lenPolarisDenom is the length of the (polarisDenomPrefix + 20 bytes + "0x") for the address.
-	lenPolarisDenom = 50
+	// lenJinxDenom is the length of the (jinxDenomPrefix + 20 bytes + "0x") for the address.
+	lenJinxDenom = 50
 )
 
-// NewPolarisDenomForAddress returns a new Polaris coin denomination for a given ERC20 originated
+// NewJinxDenomForAddress returns a new Jinx coin denomination for a given ERC20 originated
 // token address.
-func NewPolarisDenomForAddress(token common.Address) string {
-	return fmt.Sprintf("%s%s", polarisDenomPrefix, token.Hex())
+func NewJinxDenomForAddress(token common.Address) string {
+	return fmt.Sprintf("%s%s", jinxDenomPrefix, token.Hex())
 }
 
-// IsPolarisDenom returns true if the given denom is a Polaris coin denomination.
-func IsPolarisDenom(denom string) bool {
-	return len(denom) == lenPolarisDenom && denom[:lenPolarisDenomPrefix] == polarisDenomPrefix
+// IsJinxDenom returns true if the given denom is a Jinx coin denomination.
+func IsJinxDenom(denom string) bool {
+	return len(denom) == lenJinxDenom && denom[:lenJinxDenomPrefix] == jinxDenomPrefix
 }

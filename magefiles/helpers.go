@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 //
-// Copyright (c) 2023 Berachain Foundation
+// Copyright (c) 2023 Blackchain Foundation
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -32,7 +32,7 @@ import (
 	"github.com/magefile/mage/sh"
 )
 
-var allPkgs, _ = sh.Output("go", "list", "pkg.berachain.dev/polaris/...")
+var allPkgs, _ = sh.Output("go", "list", "pkg.berachain.dev/jinx/...")
 
 // RunCmd is a helper function that returns a function that runs the given
 // command with the given arguments.

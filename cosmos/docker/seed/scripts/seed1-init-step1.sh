@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BUSL-1.1
 #
-# Copyright (C) 2023, Berachain Foundation. All rights reserved.
+# Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 # Use of this software is govered by the Business Source License included
 # in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 #
@@ -26,14 +26,14 @@ MONIKER="$1"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-HOMEDIR="/root/.polard"
+HOMEDIR="/root/.jinxd"
 TRACE=""
 GENESIS=$HOMEDIR/config/genesis.json
 TMP_GENESIS=$HOMEDIR/config/tmp_genesis.json
 
 
-polard init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
+jinxd init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
 
-polard config set client keyring-backend $KEYRING --home "$HOMEDIR"
+jinxd config set client keyring-backend $KEYRING --home "$HOMEDIR"
 
-polard keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR"
+jinxd keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR"

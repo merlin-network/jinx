@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -64,10 +64,10 @@ import (
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	erc20modulev1alpha1 "pkg.berachain.dev/polaris/cosmos/api/polaris/erc20/module/v1alpha1"
-	evmmodulev1alpha1 "pkg.berachain.dev/polaris/cosmos/api/polaris/evm/module/v1alpha1"
-	erc20types "pkg.berachain.dev/polaris/cosmos/x/erc20/types"
-	evmtypes "pkg.berachain.dev/polaris/cosmos/x/evm/types"
+	erc20modulev1alpha1 "pkg.berachain.dev/jinx/cosmos/api/jinx/erc20/module/v1alpha1"
+	evmmodulev1alpha1 "pkg.berachain.dev/jinx/cosmos/api/jinx/evm/module/v1alpha1"
+	erc20types "pkg.berachain.dev/jinx/cosmos/x/erc20/types"
+	evmtypes "pkg.berachain.dev/jinx/cosmos/x/evm/types"
 
 	_ "cosmossdk.io/x/evidence"                       // import for side-effects
 	_ "cosmossdk.io/x/upgrade"                        // import for side-effects
@@ -82,8 +82,8 @@ import (
 	_ "github.com/cosmos/cosmos-sdk/x/params"         // import for side-effects
 	_ "github.com/cosmos/cosmos-sdk/x/slashing"       // import for side-effects
 	_ "github.com/cosmos/cosmos-sdk/x/staking"        // import for side-effects
-	_ "pkg.berachain.dev/polaris/cosmos/x/erc20"      // import for side-effects
-	_ "pkg.berachain.dev/polaris/cosmos/x/evm"        // import for side-effects
+	_ "pkg.berachain.dev/jinx/cosmos/x/erc20"      // import for side-effects
+	_ "pkg.berachain.dev/jinx/cosmos/x/evm"        // import for side-effects
 )
 
 var (
@@ -177,7 +177,7 @@ var (
 			{
 				Name: authtypes.ModuleName,
 				Config: appconfig.WrapAny(&authmodulev1.Module{
-					Bech32Prefix:             "polar",
+					Bech32Prefix:             "jinx",
 					ModuleAccountPermissions: moduleAccPerms,
 					// By default modules authority is the governance module. This is configurable with the following:
 					// Authority: "group", // A custom module authority can be set using a module name

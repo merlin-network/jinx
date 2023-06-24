@@ -1,4 +1,4 @@
-# polaris-docs
+# jinx-docs
 
 gm welcome to docs
 

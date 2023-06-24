@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -62,11 +62,11 @@ import (
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
-	ethcryptocodec "pkg.berachain.dev/polaris/cosmos/crypto/codec"
-	erc20keeper "pkg.berachain.dev/polaris/cosmos/x/erc20/keeper"
-	evmante "pkg.berachain.dev/polaris/cosmos/x/evm/ante"
-	evmkeeper "pkg.berachain.dev/polaris/cosmos/x/evm/keeper"
-	evmmempool "pkg.berachain.dev/polaris/cosmos/x/evm/plugins/txpool/mempool"
+	ethcryptocodec "pkg.berachain.dev/jinx/cosmos/crypto/codec"
+	erc20keeper "pkg.berachain.dev/jinx/cosmos/x/erc20/keeper"
+	evmante "pkg.berachain.dev/jinx/cosmos/x/evm/ante"
+	evmkeeper "pkg.berachain.dev/jinx/cosmos/x/evm/keeper"
+	evmmempool "pkg.berachain.dev/jinx/cosmos/x/evm/plugins/txpool/mempool"
 )
 
 // DefaultNodeHome default home directories for the application daemon.
@@ -102,7 +102,7 @@ type SimApp struct {
 	EvidenceKeeper        evidencekeeper.Keeper
 	ConsensusParamsKeeper consensuskeeper.Keeper
 
-	// polaris keepers
+	// jinx keepers
 	EVMKeeper   *evmkeeper.Keeper
 	ERC20Keeper *erc20keeper.Keeper
 
@@ -117,13 +117,13 @@ func init() {
 		panic(err)
 	}
 
-	DefaultNodeHome = filepath.Join(userHomeDir, ".polard")
+	DefaultNodeHome = filepath.Join(userHomeDir, ".jinxd")
 }
 
-// NewPolarisApp returns a reference to an initialized SimApp.
+// NewJinxApp returns a reference to an initialized SimApp.
 //
 //nolint:funlen // from sdk.
-func NewPolarisApp(
+func NewJinxApp(
 	logger log.Logger,
 	db dbm.DB,
 	traceStore io.Writer,
@@ -134,7 +134,7 @@ func NewPolarisApp(
 	var (
 		app          = &SimApp{}
 		appBuilder   *runtime.AppBuilder
-		ethTxMempool = evmmempool.NewPolarisEthereumTxPool()
+		ethTxMempool = evmmempool.NewJinxEthereumTxPool()
 		// merge the AppConfig and other configuration in one config
 		appConfig = depinject.Configs(
 			AppConfig,
@@ -238,8 +238,8 @@ func NewPolarisApp(
 		nil,
 		app.CreateQueryContext,
 		// TODO: clean this up.
-		homePath+"/config/polaris.toml",
-		homePath+"/data/polaris",
+		homePath+"/config/jinx.toml",
+		homePath+"/data/jinx",
 		logger,
 	)
 	opt := ante.HandlerOptions{

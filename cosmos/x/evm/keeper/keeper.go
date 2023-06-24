@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -31,33 +31,33 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkmempool "github.com/cosmos/cosmos-sdk/types/mempool"
 
-	cosmlib "pkg.berachain.dev/polaris/cosmos/lib"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/block"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/state"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/plugins/txpool"
-	"pkg.berachain.dev/polaris/cosmos/x/evm/types"
-	ethprecompile "pkg.berachain.dev/polaris/eth/core/precompile"
-	ethlog "pkg.berachain.dev/polaris/eth/log"
-	"pkg.berachain.dev/polaris/eth/polar"
+	cosmlib "pkg.berachain.dev/jinx/cosmos/lib"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/block"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/state"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/plugins/txpool"
+	"pkg.berachain.dev/jinx/cosmos/x/evm/types"
+	ethprecompile "pkg.berachain.dev/jinx/eth/core/precompile"
+	ethlog "pkg.berachain.dev/jinx/eth/log"
+	"pkg.berachain.dev/jinx/eth/jinx"
 )
 
 type Keeper struct {
 	// ak is the reference to the AccountKeeper.
 	ak state.AccountKeeper
-	// provider is the struct that houses the Polaris EVM.
-	polaris *polar.Polaris
+	// provider is the struct that houses the Jinx EVM.
+	jinx *jinx.Jinx
 	// The (unexposed) key used to access the store from the Context.
 	storeKey storetypes.StoreKey
 	// authority is the bech32 address that is allowed to execute governance proposals.
 	authority string
-	// The host contains various plugins that are are used to implement `core.PolarisHostChain`.
+	// The host contains various plugins that are are used to implement `core.JinxHostChain`.
 	host Host
 
 	// temp syncing
 	lock bool
 }
 
-// NewKeeper creates new instances of the polaris Keeper.
+// NewKeeper creates new instances of the jinx Keeper.
 func NewKeeper(
 	ak state.AccountKeeper,
 	sk block.StakingKeeper,
@@ -83,43 +83,43 @@ func NewKeeper(
 	return k
 }
 
-// Setup sets up the plugins in the Host. It also build the Polaris EVM Provider.
+// Setup sets up the plugins in the Host. It also build the Jinx EVM Provider.
 func (k *Keeper) Setup(
 	_ *storetypes.KVStoreKey,
 	qc func(height int64, prove bool) (sdk.Context, error),
-	polarisConfigPath string,
-	polarisDataDir string,
+	jinxConfigPath string,
+	jinxDataDir string,
 	logger log.Logger,
 ) {
 	// Setup plugins in the Host
 	k.host.Setup(k.storeKey, nil, k.ak, qc)
 
-	// Build the Polaris EVM Provider
-	cfg, err := polar.LoadConfigFromFilePath(polarisConfigPath)
+	// Build the Jinx EVM Provider
+	cfg, err := jinx.LoadConfigFromFilePath(jinxConfigPath)
 	// TODO: fix properly
 	if err != nil || cfg.GPO == nil {
-		logger.Error("failed to load polaris config", "falling back to defaults")
-		cfg = polar.DefaultConfig()
+		logger.Error("failed to load jinx config", "falling back to defaults")
+		cfg = jinx.DefaultConfig()
 	}
 
-	// TODO: PARSE POLARIS.TOML CORRECT AGAIN
-	nodeCfg := polar.DefaultGethNodeConfig()
-	nodeCfg.DataDir = polarisDataDir
-	node, err := polar.NewGethNetworkingStack(nodeCfg)
+	// TODO: PARSE JINX.TOML CORRECT AGAIN
+	nodeCfg := jinx.DefaultGethNodeConfig()
+	nodeCfg.DataDir = jinxDataDir
+	node, err := jinx.NewGethNetworkingStack(nodeCfg)
 	if err != nil {
 		panic(err)
 	}
 
-	k.polaris = polar.NewWithNetworkingStack(cfg, k.host, node, ethlog.FuncHandler(
+	k.jinx = jinx.NewWithNetworkingStack(cfg, k.host, node, ethlog.FuncHandler(
 		func(r *ethlog.Record) error {
-			polarisGethLogger := logger.With("module", "polaris-geth")
+			jinxGethLogger := logger.With("module", "jinx-geth")
 			switch r.Lvl { //nolint:nolintlint,exhaustive // linter is bugged.
 			case ethlog.LvlTrace, ethlog.LvlDebug:
-				polarisGethLogger.Debug(r.Msg, r.Ctx...)
+				jinxGethLogger.Debug(r.Msg, r.Ctx...)
 			case ethlog.LvlInfo, ethlog.LvlWarn:
-				polarisGethLogger.Info(r.Msg, r.Ctx...)
+				jinxGethLogger.Info(r.Msg, r.Ctx...)
 			case ethlog.LvlError, ethlog.LvlCrit:
-				polarisGethLogger.Error(r.Msg, r.Ctx...)
+				jinxGethLogger.Error(r.Msg, r.Ctx...)
 			}
 			return nil
 		}),
@@ -145,7 +145,7 @@ func (k *Keeper) SetClientCtx(clientContext client.Context) {
 			continue
 		}
 
-		if err := k.polaris.StartServices(); err != nil {
+		if err := k.jinx.StartServices(); err != nil {
 			panic(err)
 		}
 	}()

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -21,11 +21,11 @@
 package misc_test
 
 import (
-	tbindings "pkg.berachain.dev/polaris/contracts/bindings/testing"
+	tbindings "pkg.berachain.dev/jinx/contracts/bindings/testing"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	. "pkg.berachain.dev/polaris/cosmos/testing/integration/utils"
+	. "pkg.berachain.dev/jinx/cosmos/testing/integration/utils"
 )
 
 var _ = Describe("Miscellaneous Precompile Tests", func() {
@@ -42,12 +42,12 @@ var _ = Describe("Miscellaneous Precompile Tests", func() {
 			err = tf.Network.WaitForNextBlock()
 			Expect(err).NotTo(HaveOccurred())
 
-			aberaAddr, err := contract.Abera(nil)
+			ablackAddr, err := contract.Ablack(nil)
 			Expect(err).NotTo(HaveOccurred())
-			Expect(aberaAddr).ToNot(BeEmpty())
-			aberaStr, err := contract.Denom(nil)
+			Expect(ablackAddr).ToNot(BeEmpty())
+			ablackStr, err := contract.Denom(nil)
 			Expect(err).NotTo(HaveOccurred())
-			Expect(aberaStr).To(Equal("abera"))
+			Expect(ablackStr).To(Equal("ablack"))
 		})
 	})
 })

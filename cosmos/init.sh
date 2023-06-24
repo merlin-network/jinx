@@ -1,7 +1,7 @@
 #!/bin/bash
 # SPDX-License-Identifier: BUSL-1.1
 #
-# Copyright (C) 2023, Berachain Foundation. All rights reserved.
+# Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 # Use of this software is govered by the Business Source License included
 # in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 #
@@ -23,7 +23,7 @@
 KEYS[0]="dev0"
 KEYS[1]="dev1"
 KEYS[2]="dev2"
-CHAINID="polaris-2061"
+CHAINID="jinx-2061"
 MONIKER="localtestnet"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
@@ -31,8 +31,8 @@ MONIKER="localtestnet"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-# Set dedicated home directory for the ./bin/polard instance
-HOMEDIR="./.tmp/polard"
+# Set dedicated home directory for the ./bin/jinxd instance
+HOMEDIR="./.tmp/jinxd"
 # to trace evm
 #TRACE="--trace"
 TRACE=""
@@ -40,7 +40,7 @@ TRACE=""
 # Path variables
 CONFIG_TOML=$HOMEDIR/config/config.toml
 APP_TOML=$HOMEDIR/config/app.toml
-POLARIS_TOML=$HOMEDIR/config/polaris.toml
+JINX_TOML=$HOMEDIR/config/jinx.toml
 GENESIS=$HOMEDIR/config/genesis.json
 TMP_GENESIS=$HOMEDIR/config/tmp_genesis.json
 
@@ -66,48 +66,48 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	rm -rf "$HOMEDIR"
 
     	# Set moniker and chain-id (Moniker can be anything, chain-id must be an integer)
-	./bin/polard init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
+	./bin/jinxd init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
 
 	cp ./cosmos/docker/local/config/app.toml "$APP_TOML"
 	cp ./cosmos/docker/local/config/config.toml "$CONFIG_TOML"
-	cp ./cosmos/docker/local/config/polaris.toml "$POLARIS_TOML"
+	cp ./cosmos/docker/local/config/jinx.toml "$JINX_TOML"
 
 	# Set client config
-	./bin/polard config set client keyring-backend $KEYRING --home "$HOMEDIR"
-	./bin/polard config set client chain-id "$CHAINID" --home "$HOMEDIR"
+	./bin/jinxd config set client keyring-backend $KEYRING --home "$HOMEDIR"
+	./bin/jinxd config set client chain-id "$CHAINID" --home "$HOMEDIR"
 
 	# If keys exist they should be deleted
 	for KEY in "${KEYS[@]}"; do
-		./bin/polard keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR"
+		./bin/jinxd keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR"
 	done
 
-	# Change parameter token denominations to abera
-	jq '.app_state["staking"]["params"]["bond_denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["crisis"]["constant_fee"]["denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["mint"]["params"]["mint_denom"]="abera"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	# Change parameter token denominations to ablack
+	jq '.app_state["staking"]["params"]["bond_denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["crisis"]["constant_fee"]["denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["mint"]["params"]["mint_denom"]="ablack"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 	jq '.consensus["params"]["block"]["max_gas"]="30000000"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 
 	# Allocate genesis accounts (cosmos formatted addresses)
 	for KEY in "${KEYS[@]}"; do
-		./bin/polard genesis add-genesis-account $KEY 100000000000000000000000000abera --keyring-backend $KEYRING --home "$HOMEDIR"
+		./bin/jinxd genesis add-genesis-account $KEY 100000000000000000000000000ablack --keyring-backend $KEYRING --home "$HOMEDIR"
 	done
 
 
 	# Sign genesis transaction
-	./bin/polard genesis gentx ${KEYS[0]} 1000000000000000000000abera --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"
+	./bin/jinxd genesis gentx ${KEYS[0]} 1000000000000000000000ablack --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"
 	## In case you want to create multiple validators at genesis
-	## 1. Back to `./bin/polard keys add` step, init more keys
-	## 2. Back to `./bin/polard add-genesis-account` step, add balance for those
-	## 3. Clone this ~/../bin/polard home directory into some others, let's say `~/.cloned./bin/polard`
+	## 1. Back to `./bin/jinxd keys add` step, init more keys
+	## 2. Back to `./bin/jinxd add-genesis-account` step, add balance for those
+	## 3. Clone this ~/../bin/jinxd home directory into some others, let's say `~/.cloned./bin/jinxd`
 	## 4. Run `gentx` in each of those folders
-	## 5. Copy the `gentx-*` folders under `~/.cloned./bin/polard/config/gentx/` folders into the original `~/../bin/polard/config/gentx`
+	## 5. Copy the `gentx-*` folders under `~/.cloned./bin/jinxd/config/gentx/` folders into the original `~/../bin/jinxd/config/gentx`
 
 	# Collect genesis tx
-	./bin/polard genesis collect-gentxs --home "$HOMEDIR"
+	./bin/jinxd genesis collect-gentxs --home "$HOMEDIR"
 
 	# Run this to ensure everything worked and that the genesis file is setup correctly
-	./bin/polard genesis validate-genesis --home "$HOMEDIR"
+	./bin/jinxd genesis validate-genesis --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
@@ -115,4 +115,4 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 fi
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)m
-./bin/polard start --pruning=nothing "$TRACE" --log_level $LOGLEVEL --api.enabled-unsafe-cors --api.enable --api.swagger --minimum-gas-prices=0.0001abera --home "$HOMEDIR"
+./bin/jinxd start --pruning=nothing "$TRACE" --log_level $LOGLEVEL --api.enabled-unsafe-cors --api.enable --api.swagger --minimum-gas-prices=0.0001ablack --home "$HOMEDIR"

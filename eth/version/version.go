@@ -27,13 +27,13 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"pkg.berachain.dev/polaris/eth/params"
+	"pkg.berachain.dev/jinx/eth/params"
 )
 
 const (
 	govcsTimeLayout = "2006-01-02T15:04:05Z"
 	ourTimeLayout   = "20060102"
-	ourPath         = "pkg.berachain.dev/polaris/eth" // Path to our module
+	ourPath         = "pkg.berachain.dev/jinx/eth" // Path to our module
 )
 
 // These variables are set at build-time by the linker when the build is

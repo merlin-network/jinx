@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -23,9 +23,9 @@ package core
 import (
 	"math/big"
 
-	"pkg.berachain.dev/polaris/eth/common"
-	"pkg.berachain.dev/polaris/eth/core/types"
-	"pkg.berachain.dev/polaris/lib/utils"
+	"pkg.berachain.dev/jinx/eth/common"
+	"pkg.berachain.dev/jinx/eth/core/types"
+	"pkg.berachain.dev/jinx/lib/utils"
 )
 
 // ChainReader defines methods that are used to read the state and blocks of the chain.
@@ -91,7 +91,7 @@ func (bc *blockchain) CurrentBlock() *types.Header {
 	return block.Header()
 }
 
-// CurrentSnapBlock is UNUSED in Polaris.
+// CurrentSnapBlock is UNUSED in Jinx.
 func (bc *blockchain) CurrentSnapBlock() *types.Header {
 	return nil
 }
@@ -111,7 +111,7 @@ func (bc *blockchain) CurrentFinalBlock() *types.Header {
 // CurrentSafeBlock retrieves the current safe block of the canonical
 // chain. The block is retrieved from the blockchain's internal cache.
 func (bc *blockchain) CurrentSafeBlock() *types.Header {
-	// TODO: determine the difference between safe and final in polaris.
+	// TODO: determine the difference between safe and final in jinx.
 	return bc.CurrentFinalBlock()
 }
 

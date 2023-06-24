@@ -1,6 +1,6 @@
 
 # syntax=docker/dockerfile:1
-# Copyright (C) 2022, Berachain Foundation. All rights reserved.
+# Copyright (C) 2022, Blackchain Foundation. All rights reserved.
 # See the file LICENSE for licensing terms.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
@@ -17,7 +17,7 @@
 ARG GO_VERSION
 ARG GOARCH=arm64
 ARG GOOS=darwin
-ARG POLARD_VERSION=v0.0.0
+ARG JINXD_VERSION=v0.0.0
 
 # Use the latest foundry image
-FROM polard-base:${POLARD_VERSION} as rpcpolard
+FROM jinxd-base:${JINXD_VERSION} as rpcjinxd

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Copyright (C) 2023, Berachain Foundation. All rights reserved.
+// Copyright (C) 2023, Blackchain Foundation. All rights reserved.
 // Use of this software is govered by the Business Source License included
 // in the LICENSE file of this repository and at www.mariadb.com/bsl11.
 //
@@ -24,9 +24,9 @@ import (
 	"context"
 	"math/big"
 
-	"pkg.berachain.dev/polaris/eth/core/state"
-	"pkg.berachain.dev/polaris/eth/core/types"
-	"pkg.berachain.dev/polaris/eth/core/vm"
+	"pkg.berachain.dev/jinx/eth/core/state"
+	"pkg.berachain.dev/jinx/eth/core/types"
+	"pkg.berachain.dev/jinx/eth/core/vm"
 )
 
 // ChainResources is the interface that defines functions for code paths within the chain to acquire
@@ -34,7 +34,7 @@ import (
 type ChainResources interface {
 	StateAtBlockNumber(uint64) (vm.GethStateDB, error)
 	GetVMConfig() *vm.Config
-	GetEVM(context.Context, vm.TxContext, vm.PolarisStateDB, *types.Header, *vm.Config) *vm.GethEVM
+	GetEVM(context.Context, vm.TxContext, vm.JinxStateDB, *types.Header, *vm.Config) *vm.GethEVM
 	NewEVMBlockContext(header *types.Header) *vm.BlockContext
 }
 
@@ -52,7 +52,7 @@ func (bc *blockchain) StateAtBlockNumber(number uint64) (vm.GethStateDB, error) 
 // StateProcessor to acquire a new EVM at the start of every block. As well as by the backend to
 // acquire an EVM for running gas estimations, eth_call etc.
 func (bc *blockchain) GetEVM(
-	_ context.Context, txContext vm.TxContext, state vm.PolarisStateDB,
+	_ context.Context, txContext vm.TxContext, state vm.JinxStateDB,
 	header *types.Header, vmConfig *vm.Config,
 ) *vm.GethEVM {
 	chainCfg := bc.processor.cp.ChainConfig() // TODO: get chain config at height.
